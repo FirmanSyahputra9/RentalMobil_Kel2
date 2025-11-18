@@ -44,13 +44,17 @@ namespace RentalMobil_Kel2
                 return;
             }
 
-            bool isAuthenticated = parentForm.AuthenticateUser(username, password);
+            int authResult = parentForm.AuthenticateUser(username, password);
 
-            if (isAuthenticated)
+            if (authResult == 1)
             {
                 MessageBox.Show($"Selamat datang, {username}!", "Login Berhasil");
-
                 parentForm.LoginSuccess();
+            }
+            else if (authResult == 0)
+            {
+                MessageBox.Show("Akun Anda tidak aktif. Hubungi admin!", "Akses Ditolak");
+                textBox2.Clear();
             }
             else
             {
@@ -58,5 +62,6 @@ namespace RentalMobil_Kel2
                 textBox2.Clear();
             }
         }
+
     }
 }

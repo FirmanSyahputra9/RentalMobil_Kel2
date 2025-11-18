@@ -84,7 +84,6 @@
             groupBox1.Size = new Size(835, 291);
             groupBox1.TabIndex = 1;
             groupBox1.TabStop = false;
-            groupBox1.Text = "groupBox1";
             // 
             // comboBox2
             // 
@@ -206,7 +205,7 @@
             btnAdd.Name = "btnAdd";
             btnAdd.Size = new Size(134, 81);
             btnAdd.TabIndex = 2;
-            btnAdd.Text = "btnAdd";
+            btnAdd.Text = "Tambah";
             btnAdd.UseVisualStyleBackColor = true;
             btnAdd.Click += btnAdd_Click;
             // 
