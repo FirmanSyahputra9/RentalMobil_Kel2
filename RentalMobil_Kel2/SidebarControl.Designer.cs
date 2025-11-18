@@ -35,6 +35,7 @@
             ReturnNav = new Button();
             RentalNav = new Button();
             AuthNav = new Button();
+            HomeNav = new Button();
             groupBox1.SuspendLayout();
             SuspendLayout();
             // 
@@ -61,6 +62,7 @@
             ExitNav.TabIndex = 5;
             ExitNav.Text = "ExitNav";
             ExitNav.UseVisualStyleBackColor = true;
+            ExitNav.Click += ExitNav_Click;
             // 
             // AddUserNav
             // 
@@ -70,6 +72,7 @@
             AddUserNav.TabIndex = 4;
             AddUserNav.Text = "AddUserNav";
             AddUserNav.UseVisualStyleBackColor = true;
+            AddUserNav.Click += AddUserNav_Click;
             // 
             // AddCarNav
             // 
@@ -79,6 +82,7 @@
             AddCarNav.TabIndex = 3;
             AddCarNav.Text = "AddCarNav";
             AddCarNav.UseVisualStyleBackColor = true;
+            AddCarNav.Click += AddCarNav_Click;
             // 
             // ReturnNav
             // 
@@ -88,6 +92,7 @@
             ReturnNav.TabIndex = 2;
             ReturnNav.Text = "ReturnNav";
             ReturnNav.UseVisualStyleBackColor = true;
+            ReturnNav.Click += ReturnNav_Click_1;
             // 
             // RentalNav
             // 
@@ -109,11 +114,22 @@
             AuthNav.UseVisualStyleBackColor = true;
             AuthNav.Click += AuthNav_Click;
             // 
+            // HomeNav
+            // 
+            HomeNav.Location = new Point(13, 13);
+            HomeNav.Name = "HomeNav";
+            HomeNav.Size = new Size(41, 29);
+            HomeNav.TabIndex = 1;
+            HomeNav.Text = "HomeNav";
+            HomeNav.UseVisualStyleBackColor = true;
+            HomeNav.Click += HomeNav_Click;
+            // 
             // SidebarControl
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Highlight;
+            Controls.Add(HomeNav);
             Controls.Add(groupBox1);
             Name = "SidebarControl";
             Size = new Size(300, 768);
@@ -130,5 +146,6 @@
         private Button ReturnNav;
         private Button RentalNav;
         private Button AuthNav;
+        private Button HomeNav;
     }
 }

@@ -42,10 +42,9 @@
             // 
             // panel2
             // 
-            panel2.Dock = DockStyle.Fill;
-            panel2.Location = new Point(300, 0);
+            panel2.Location = new Point(306, 0);
             panel2.Name = "panel2";
-            panel2.Size = new Size(902, 773);
+            panel2.Size = new Size(890, 768);
             panel2.TabIndex = 1;
             // 
             // Form1

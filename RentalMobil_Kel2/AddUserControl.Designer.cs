@@ -1,6 +1,6 @@
 ﻿namespace RentalMobil_Kel2
 {
-    partial class AuthControl
+    partial class AddUserControl
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,29 +28,31 @@
         /// </summary>
         private void InitializeComponent()
         {
-            panel1 = new Panel();
+            label1 = new Label();
             SuspendLayout();
             // 
-            // panel1
+            // label1
             // 
-            panel1.Location = new Point(223, 161);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(450, 550);
-            panel1.TabIndex = 0;
+            label1.AutoSize = true;
+            label1.Location = new Point(514, 202);
+            label1.Name = "label1";
+            label1.Size = new Size(66, 20);
+            label1.TabIndex = 0;
+            label1.Text = "AddUser";
             // 
-            // AuthControl
+            // AddUserControl
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.Info;
-            Controls.Add(panel1);
-            Name = "AuthControl";
+            Controls.Add(label1);
+            Name = "AddUserControl";
             Size = new Size(890, 768);
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
-        private Panel panel1;
+        private Label label1;
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace RentalMobil_Kel2
 {
-    partial class AuthControl
+    partial class ReturnControl
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,29 +28,30 @@
         /// </summary>
         private void InitializeComponent()
         {
-            panel1 = new Panel();
+            button1 = new Button();
             SuspendLayout();
             // 
-            // panel1
+            // button1
             // 
-            panel1.Location = new Point(223, 161);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(450, 550);
-            panel1.TabIndex = 0;
+            button1.Location = new Point(510, 305);
+            button1.Name = "button1";
+            button1.Size = new Size(290, 124);
+            button1.TabIndex = 0;
+            button1.Text = "Retun";
+            button1.UseVisualStyleBackColor = true;
             // 
-            // AuthControl
+            // ReturnControl
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.Info;
-            Controls.Add(panel1);
-            Name = "AuthControl";
+            Controls.Add(button1);
+            Name = "ReturnControl";
             Size = new Size(890, 768);
             ResumeLayout(false);
         }
 
         #endregion
 
-        private Panel panel1;
+        private Button button1;
     }
 }
