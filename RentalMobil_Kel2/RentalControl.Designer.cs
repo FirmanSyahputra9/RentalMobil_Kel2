@@ -64,6 +64,7 @@
             groupBox1 = new GroupBox();
             groupBox2 = new GroupBox();
             groupBox3 = new GroupBox();
+            mySqlCommand1 = new MySql.Data.MySqlClient.MySqlCommand();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -71,7 +72,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Cooper Black", 22.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.Location = new Point(176, 15);
+            label1.Location = new Point(190, 19);
             label1.Name = "label1";
             label1.Size = new Size(557, 42);
             label1.TabIndex = 1;
@@ -80,7 +81,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(21, 105);
+            label2.Location = new Point(30, 144);
             label2.Name = "label2";
             label2.Size = new Size(64, 20);
             label2.TabIndex = 2;
@@ -89,7 +90,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(21, 140);
+            label3.Location = new Point(30, 179);
             label3.Name = "label3";
             label3.Size = new Size(53, 20);
             label3.TabIndex = 3;
@@ -98,7 +99,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(21, 181);
+            label4.Location = new Point(30, 220);
             label4.Name = "label4";
             label4.Size = new Size(57, 20);
             label4.TabIndex = 4;
@@ -107,7 +108,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(21, 217);
+            label5.Location = new Point(30, 256);
             label5.Name = "label5";
             label5.Size = new Size(52, 20);
             label5.TabIndex = 5;
@@ -116,7 +117,7 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(291, 101);
+            label6.Location = new Point(300, 140);
             label6.Name = "label6";
             label6.Size = new Size(67, 20);
             label6.TabIndex = 6;
@@ -125,7 +126,7 @@
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(291, 136);
+            label7.Location = new Point(300, 175);
             label7.Name = "label7";
             label7.Size = new Size(93, 20);
             label7.TabIndex = 7;
@@ -134,7 +135,7 @@
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(291, 177);
+            label8.Location = new Point(300, 216);
             label8.Name = "label8";
             label8.Size = new Size(81, 20);
             label8.TabIndex = 8;
@@ -143,7 +144,7 @@
             // label9
             // 
             label9.AutoSize = true;
-            label9.Location = new Point(291, 213);
+            label9.Location = new Point(300, 252);
             label9.Name = "label9";
             label9.Size = new Size(90, 20);
             label9.TabIndex = 9;
@@ -152,7 +153,7 @@
             // label10
             // 
             label10.AutoSize = true;
-            label10.Location = new Point(291, 249);
+            label10.Location = new Point(300, 288);
             label10.Name = "label10";
             label10.Size = new Size(91, 20);
             label10.TabIndex = 10;
@@ -161,7 +162,7 @@
             // label11
             // 
             label11.AutoSize = true;
-            label11.Location = new Point(291, 285);
+            label11.Location = new Point(300, 324);
             label11.Name = "label11";
             label11.Size = new Size(49, 20);
             label11.TabIndex = 11;
@@ -170,7 +171,7 @@
             // label12
             // 
             label12.AutoSize = true;
-            label12.Location = new Point(579, 105);
+            label12.Location = new Point(588, 144);
             label12.Name = "label12";
             label12.Size = new Size(110, 20);
             label12.TabIndex = 12;
@@ -179,7 +180,7 @@
             // label13
             // 
             label13.AutoSize = true;
-            label13.Location = new Point(579, 140);
+            label13.Location = new Point(588, 179);
             label13.Name = "label13";
             label13.Size = new Size(120, 20);
             label13.TabIndex = 13;
@@ -188,7 +189,7 @@
             // label14
             // 
             label14.AutoSize = true;
-            label14.Location = new Point(579, 181);
+            label14.Location = new Point(588, 220);
             label14.Name = "label14";
             label14.Size = new Size(130, 20);
             label14.TabIndex = 14;
@@ -196,7 +197,7 @@
             // 
             // button2
             // 
-            button2.Location = new Point(622, 231);
+            button2.Location = new Point(631, 270);
             button2.Name = "button2";
             button2.Size = new Size(94, 29);
             button2.TabIndex = 15;
@@ -206,106 +207,107 @@
             // label15
             // 
             label15.AutoSize = true;
-            label15.Location = new Point(641, 286);
+            label15.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label15.Location = new Point(650, 325);
             label15.Name = "label15";
-            label15.Size = new Size(67, 20);
+            label15.Size = new Size(71, 20);
             label15.TabIndex = 16;
             label15.Text = "Total Rp.";
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(94, 102);
+            textBox1.Location = new Point(103, 141);
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(125, 27);
             textBox1.TabIndex = 17;
             // 
             // textBox2
             // 
-            textBox2.Location = new Point(94, 140);
+            textBox2.Location = new Point(103, 179);
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(125, 27);
             textBox2.TabIndex = 18;
             // 
             // textBox3
             // 
-            textBox3.Location = new Point(94, 181);
+            textBox3.Location = new Point(103, 220);
             textBox3.Name = "textBox3";
             textBox3.Size = new Size(125, 27);
             textBox3.TabIndex = 19;
             // 
             // textBox4
             // 
-            textBox4.Location = new Point(94, 217);
+            textBox4.Location = new Point(103, 256);
             textBox4.Name = "textBox4";
             textBox4.Size = new Size(125, 27);
             textBox4.TabIndex = 20;
             // 
             // textBox6
             // 
-            textBox6.Location = new Point(394, 136);
+            textBox6.Location = new Point(403, 175);
             textBox6.Name = "textBox6";
             textBox6.Size = new Size(125, 27);
             textBox6.TabIndex = 22;
             // 
             // textBox7
             // 
-            textBox7.Location = new Point(394, 177);
+            textBox7.Location = new Point(403, 216);
             textBox7.Name = "textBox7";
             textBox7.Size = new Size(125, 27);
             textBox7.TabIndex = 23;
             // 
             // textBox8
             // 
-            textBox8.Location = new Point(394, 213);
+            textBox8.Location = new Point(403, 252);
             textBox8.Name = "textBox8";
             textBox8.Size = new Size(125, 27);
             textBox8.TabIndex = 24;
             // 
             // textBox9
             // 
-            textBox9.Location = new Point(394, 246);
+            textBox9.Location = new Point(403, 285);
             textBox9.Name = "textBox9";
             textBox9.Size = new Size(125, 27);
             textBox9.TabIndex = 25;
             // 
             // textBox10
             // 
-            textBox10.Location = new Point(394, 282);
+            textBox10.Location = new Point(403, 321);
             textBox10.Name = "textBox10";
             textBox10.Size = new Size(125, 27);
             textBox10.TabIndex = 26;
             // 
             // textBox11
             // 
-            textBox11.Location = new Point(722, 104);
+            textBox11.Location = new Point(731, 143);
             textBox11.Name = "textBox11";
             textBox11.Size = new Size(125, 27);
             textBox11.TabIndex = 27;
             // 
             // textBox12
             // 
-            textBox12.Location = new Point(722, 137);
+            textBox12.Location = new Point(731, 176);
             textBox12.Name = "textBox12";
             textBox12.Size = new Size(125, 27);
             textBox12.TabIndex = 28;
             // 
             // textBox13
             // 
-            textBox13.Location = new Point(722, 178);
+            textBox13.Location = new Point(731, 217);
             textBox13.Name = "textBox13";
             textBox13.Size = new Size(125, 27);
             textBox13.TabIndex = 29;
             // 
             // textBox14
             // 
-            textBox14.Location = new Point(722, 282);
+            textBox14.Location = new Point(731, 321);
             textBox14.Name = "textBox14";
             textBox14.Size = new Size(125, 27);
             textBox14.TabIndex = 30;
             // 
             // button3
             // 
-            button3.Location = new Point(244, 371);
+            button3.Location = new Point(243, 395);
             button3.Name = "button3";
             button3.Size = new Size(150, 49);
             button3.TabIndex = 31;
@@ -314,7 +316,7 @@
             // 
             // button4
             // 
-            button4.Location = new Point(528, 371);
+            button4.Location = new Point(538, 395);
             button4.Name = "button4";
             button4.Size = new Size(150, 49);
             button4.TabIndex = 32;
@@ -333,7 +335,7 @@
             // comboBox1
             // 
             comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(394, 99);
+            comboBox1.Location = new Point(403, 138);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(151, 28);
             comboBox1.TabIndex = 34;
@@ -341,15 +343,17 @@
             // groupBox1
             // 
             groupBox1.BackgroundImageLayout = ImageLayout.None;
-            groupBox1.Location = new Point(8, 71);
+            groupBox1.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            groupBox1.Location = new Point(17, 110);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new Size(247, 256);
             groupBox1.TabIndex = 35;
             groupBox1.TabStop = false;
+            groupBox1.Text = "Data Peminjam";
             // 
             // groupBox2
             // 
-            groupBox2.Location = new Point(279, 71);
+            groupBox2.Location = new Point(288, 110);
             groupBox2.Name = "groupBox2";
             groupBox2.Size = new Size(276, 256);
             groupBox2.TabIndex = 36;
@@ -357,11 +361,18 @@
             // 
             // groupBox3
             // 
-            groupBox3.Location = new Point(571, 71);
+            groupBox3.Location = new Point(580, 110);
             groupBox3.Name = "groupBox3";
             groupBox3.Size = new Size(293, 256);
             groupBox3.TabIndex = 36;
             groupBox3.TabStop = false;
+            // 
+            // mySqlCommand1
+            // 
+            mySqlCommand1.CacheAge = 0;
+            mySqlCommand1.Connection = null;
+            mySqlCommand1.EnableCaching = false;
+            mySqlCommand1.Transaction = null;
             // 
             // RentalControl
             // 
@@ -448,5 +459,6 @@
         private GroupBox groupBox1;
         private GroupBox groupBox2;
         private GroupBox groupBox3;
+        private MySql.Data.MySqlClient.MySqlCommand mySqlCommand1;
     }
 }

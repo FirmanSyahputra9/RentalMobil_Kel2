@@ -57,9 +57,10 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(44, 13);
+            label1.Font = new Font("Cooper Black", 22.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label1.Location = new Point(258, 6);
             label1.Name = "label1";
-            label1.Size = new Size(142, 20);
+            label1.Size = new Size(392, 42);
             label1.TabIndex = 0;
             label1.Text = "Form Tambah Mobil";
             // 
@@ -249,7 +250,7 @@
             dataGridView1.Location = new Point(29, 542);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(789, 188);
+            dataGridView1.Size = new Size(835, 188);
             dataGridView1.TabIndex = 7;
             // 
             // AddCarControl
