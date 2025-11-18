@@ -47,16 +47,16 @@ namespace RentalMobil_Kel2
         {
             int dbStatus = status ? 1 : 0;
 
-            string query = "INSERT INTO user (id_user, nama, username, password, type, status) VALUES (@id, @name, @user, @pass, @type, @status)";
+            string query = "INSERT INTO user (id_user, nama, username, password, type, status) VALUES (@id_user, @name, @username, @password, @type, @status)";
 
             using (MySqlConnection connection = new MySqlConnection(connStr))
             {
                 using (MySqlCommand command = new MySqlCommand(query, connection))
                 {
-                    command.Parameters.AddWithValue("@id", id_user);
+                    command.Parameters.AddWithValue("@id_user", id_user);
                     command.Parameters.AddWithValue("@name", nama);
-                    command.Parameters.AddWithValue("@user", username);
-                    command.Parameters.AddWithValue("@pass", password);
+                    command.Parameters.AddWithValue("@username", username);
+                    command.Parameters.AddWithValue("@password", password);
                     command.Parameters.AddWithValue("@type", type);
                     command.Parameters.AddWithValue("@status", dbStatus);
                     try
@@ -91,11 +91,11 @@ namespace RentalMobil_Kel2
 
 
         // login
-        public bool AuthenticateUser(string username, string password)
+        public int AuthenticateUser(string username, string password)
         {
             string hashedPassword = password;
 
-            string query = "SELECT COUNT(1) FROM user WHERE username = @user AND password = @pass AND status = 1";
+            string query = "SELECT status FROM user WHERE username = @user AND password = @pass LIMIT 1";
 
             using (MySqlConnection connection = new MySqlConnection(connStr))
             {
@@ -107,14 +107,22 @@ namespace RentalMobil_Kel2
                     try
                     {
                         connection.Open();
-                        int count = Convert.ToInt32(command.ExecuteScalar());
+                        object result = command.ExecuteScalar();
 
-                        return count == 1; 
+                        if (result == null)
+                            return -1;
+
+                        int status = Convert.ToInt32(result);
+
+                        if (status == 0)
+                            return 0; 
+
+                        return 1;
                     }
                     catch (MySqlException ex)
                     {
                         MessageBox.Show($"Kesalahan Otentikasi DB: {ex.Message}", "Kesalahan Login", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return false;
+                        return -1;
                     }
                 }
             }

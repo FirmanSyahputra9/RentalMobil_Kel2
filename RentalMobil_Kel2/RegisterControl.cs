@@ -43,7 +43,7 @@ namespace RentalMobil_Kel2
             username = this.textBox3.Text;
             password = this.textBox4.Text;
             kon_password = this.textBox5.Text;
-            status = true;
+            status = false;
             type = "user";
 
 
