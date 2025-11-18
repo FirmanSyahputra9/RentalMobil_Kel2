@@ -130,12 +130,13 @@
             // 
             // HomeNav
             // 
-            HomeNav.Location = new Point(40, 3);
+            HomeNav.Location = new Point(3, 3);
             HomeNav.Name = "HomeNav";
             HomeNav.Size = new Size(41, 29);
             HomeNav.TabIndex = 1;
             HomeNav.Text = "HomeNav";
             HomeNav.UseVisualStyleBackColor = true;
+            HomeNav.Click += HomeNav_Click;
             // 
             // pictureBox2
             // 

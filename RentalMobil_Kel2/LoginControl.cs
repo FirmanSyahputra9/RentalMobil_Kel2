@@ -62,6 +62,5 @@ namespace RentalMobil_Kel2
                 textBox2.Clear();
             }
         }
-
     }
 }

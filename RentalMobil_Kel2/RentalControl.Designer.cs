@@ -70,129 +70,129 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Stencil", 22.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.Location = new Point(280, 15);
+            label1.Font = new Font("Cooper Black", 22.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label1.Location = new Point(176, 15);
             label1.Name = "label1";
-            label1.Size = new Size(362, 44);
+            label1.Size = new Size(557, 42);
             label1.TabIndex = 1;
-            label1.Text = "FORM PEMINJAMAN";
+            label1.Text = "FORM PEMINJAMAN MOBIL";
             // 
             // label2
             // 
             label2.AutoSize = true;
             label2.Location = new Point(21, 105);
             label2.Name = "label2";
-            label2.Size = new Size(67, 20);
+            label2.Size = new Size(64, 20);
             label2.TabIndex = 2;
-            label2.Text = "NO KTP :";
+            label2.Text = "NO KTP ";
             // 
             // label3
             // 
             label3.AutoSize = true;
             label3.Location = new Point(21, 140);
             label3.Name = "label3";
-            label3.Size = new Size(56, 20);
+            label3.Size = new Size(53, 20);
             label3.TabIndex = 3;
-            label3.Text = "Nama :";
+            label3.Text = "Nama ";
             // 
             // label4
             // 
             label4.AutoSize = true;
             label4.Location = new Point(21, 181);
             label4.Name = "label4";
-            label4.Size = new Size(64, 20);
+            label4.Size = new Size(57, 20);
             label4.TabIndex = 4;
-            label4.Text = "Alamat :";
+            label4.Text = "Alamat";
             // 
             // label5
             // 
             label5.AutoSize = true;
             label5.Location = new Point(21, 217);
             label5.Name = "label5";
-            label5.Size = new Size(59, 20);
+            label5.Size = new Size(52, 20);
             label5.TabIndex = 5;
-            label5.Text = "No HP :";
+            label5.Text = "No HP";
             // 
             // label6
             // 
             label6.AutoSize = true;
             label6.Location = new Point(291, 101);
             label6.Name = "label6";
-            label6.Size = new Size(74, 20);
+            label6.Size = new Size(67, 20);
             label6.TabIndex = 6;
-            label6.Text = "No Polisi :";
+            label6.Text = "No Polisi";
             // 
             // label7
             // 
             label7.AutoSize = true;
             label7.Location = new Point(291, 136);
             label7.Name = "label7";
-            label7.Size = new Size(100, 20);
+            label7.Size = new Size(93, 20);
             label7.TabIndex = 7;
-            label7.Text = "Merek Mobil :";
+            label7.Text = "Merek Mobil";
             // 
             // label8
             // 
             label8.AutoSize = true;
             label8.Location = new Point(291, 177);
             label8.Name = "label8";
-            label8.Size = new Size(88, 20);
+            label8.Size = new Size(81, 20);
             label8.TabIndex = 8;
-            label8.Text = "Tipe Mobil :";
+            label8.Text = "Tipe Mobil";
             // 
             // label9
             // 
             label9.AutoSize = true;
             label9.Location = new Point(291, 213);
             label9.Name = "label9";
-            label9.Size = new Size(97, 20);
+            label9.Size = new Size(90, 20);
             label9.TabIndex = 9;
-            label9.Text = "Tahun Mobil :";
+            label9.Text = "Tahun Mobil";
             // 
             // label10
             // 
             label10.AutoSize = true;
             label10.Location = new Point(291, 249);
             label10.Name = "label10";
-            label10.Size = new Size(98, 20);
+            label10.Size = new Size(91, 20);
             label10.TabIndex = 10;
-            label10.Text = "Harga(/hari) :";
+            label10.Text = "Harga(/hari)";
             // 
             // label11
             // 
             label11.AutoSize = true;
             label11.Location = new Point(291, 285);
             label11.Name = "label11";
-            label11.Size = new Size(56, 20);
+            label11.Size = new Size(49, 20);
             label11.TabIndex = 11;
-            label11.Text = "Status :";
+            label11.Text = "Status";
             // 
             // label12
             // 
             label12.AutoSize = true;
             label12.Location = new Point(579, 105);
             label12.Name = "label12";
-            label12.Size = new Size(117, 20);
+            label12.Size = new Size(110, 20);
             label12.TabIndex = 12;
-            label12.Text = "Tanggal Pinjam :";
+            label12.Text = "Tanggal Pinjam";
             // 
             // label13
             // 
             label13.AutoSize = true;
             label13.Location = new Point(579, 140);
             label13.Name = "label13";
-            label13.Size = new Size(127, 20);
+            label13.Size = new Size(120, 20);
             label13.TabIndex = 13;
-            label13.Text = "Tanggal Kembali :";
+            label13.Text = "Tanggal Kembali";
             // 
             // label14
             // 
             label14.AutoSize = true;
             label14.Location = new Point(579, 181);
             label14.Name = "label14";
-            label14.Size = new Size(137, 20);
+            label14.Size = new Size(130, 20);
             label14.TabIndex = 14;
-            label14.Text = "Lama Peminjaman :";
+            label14.Text = "Lama Peminjaman";
             // 
             // button2
             // 
@@ -305,7 +305,7 @@
             // 
             // button3
             // 
-            button3.Location = new Point(239, 371);
+            button3.Location = new Point(244, 371);
             button3.Name = "button3";
             button3.Size = new Size(150, 49);
             button3.TabIndex = 31;
@@ -324,7 +324,7 @@
             // dataGridView1
             // 
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(18, 483);
+            dataGridView1.Location = new Point(18, 481);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 51;
             dataGridView1.Size = new Size(851, 271);
@@ -349,7 +349,7 @@
             // 
             // groupBox2
             // 
-            groupBox2.Location = new Point(280, 71);
+            groupBox2.Location = new Point(279, 71);
             groupBox2.Name = "groupBox2";
             groupBox2.Size = new Size(276, 256);
             groupBox2.TabIndex = 36;
@@ -357,9 +357,9 @@
             // 
             // groupBox3
             // 
-            groupBox3.Location = new Point(579, 71);
+            groupBox3.Location = new Point(571, 71);
             groupBox3.Name = "groupBox3";
-            groupBox3.Size = new Size(276, 256);
+            groupBox3.Size = new Size(293, 256);
             groupBox3.TabIndex = 36;
             groupBox3.TabStop = false;
             // 
@@ -367,7 +367,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.LightSkyBlue;
+            BackColor = Color.Silver;
             Controls.Add(comboBox1);
             Controls.Add(dataGridView1);
             Controls.Add(button4);

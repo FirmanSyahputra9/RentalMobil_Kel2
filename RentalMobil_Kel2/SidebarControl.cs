@@ -18,7 +18,10 @@ namespace RentalMobil_Kel2
         }
         public event EventHandler<string> NavigationRequested;
 
-
+        private void HomeNav_Click(object sender, EventArgs e)
+        {
+            NavigationRequested?.Invoke(this, "Home");
+        }
 
         private void AuthNav_Click(object sender, EventArgs e)
         {
@@ -83,5 +86,7 @@ namespace RentalMobil_Kel2
                 AuthNav.Text = "Login";
             }
         }
+
+   
     }
 }

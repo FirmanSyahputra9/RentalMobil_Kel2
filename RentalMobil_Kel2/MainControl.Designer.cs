@@ -74,7 +74,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.Azure;
+            BackColor = Color.White;
             Controls.Add(pictureBox2);
             Controls.Add(pictureBox1);
             Controls.Add(BeRent);

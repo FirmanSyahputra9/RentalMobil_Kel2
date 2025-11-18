@@ -36,17 +36,20 @@
             textBox2 = new TextBox();
             button2 = new Button();
             groupBox1 = new GroupBox();
+            label5 = new Label();
+            label4 = new Label();
             groupBox1.SuspendLayout();
             SuspendLayout();
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(181, 0);
+            label1.Font = new Font("Cooper Black", 19.8000011F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label1.Location = new Point(134, -9);
             label1.Name = "label1";
-            label1.Size = new Size(46, 20);
+            label1.Size = new Size(134, 39);
             label1.TabIndex = 0;
-            label1.Text = "Login";
+            label1.Text = "LOGIN";
             // 
             // button1
             // 
@@ -63,45 +66,50 @@
             label2.AutoSize = true;
             label2.Location = new Point(55, 176);
             label2.Name = "label2";
-            label2.Size = new Size(50, 20);
+            label2.Size = new Size(75, 20);
             label2.TabIndex = 2;
-            label2.Text = "label2";
+            label2.Text = "Username";
             // 
             // label3
             // 
             label3.AutoSize = true;
             label3.Location = new Point(55, 228);
             label3.Name = "label3";
-            label3.Size = new Size(50, 20);
+            label3.Size = new Size(70, 20);
             label3.TabIndex = 3;
-            label3.Text = "label3";
+            label3.Text = "Password";
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(154, 173);
+            textBox1.Location = new Point(103, 131);
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(246, 27);
+            textBox1.Size = new Size(264, 27);
             textBox1.TabIndex = 4;
             // 
             // textBox2
             // 
-            textBox2.Location = new Point(154, 225);
+            textBox2.Location = new Point(103, 183);
             textBox2.Name = "textBox2";
-            textBox2.Size = new Size(246, 27);
+            textBox2.Size = new Size(264, 27);
             textBox2.TabIndex = 5;
             // 
             // button2
             // 
-            button2.Location = new Point(195, 298);
+            button2.Location = new Point(273, 264);
             button2.Name = "button2";
             button2.Size = new Size(94, 29);
             button2.TabIndex = 6;
-            button2.Text = "button2";
+            button2.Text = "Login";
             button2.UseVisualStyleBackColor = true;
             button2.Click += button2_Click;
             // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(label5);
+            groupBox1.Controls.Add(label4);
+            groupBox1.Controls.Add(textBox2);
+            groupBox1.Controls.Add(button2);
+            groupBox1.Controls.Add(textBox1);
             groupBox1.Controls.Add(button1);
             groupBox1.Controls.Add(label1);
             groupBox1.Location = new Point(33, 42);
@@ -109,15 +117,31 @@
             groupBox1.Size = new Size(389, 481);
             groupBox1.TabIndex = 7;
             groupBox1.TabStop = false;
-            groupBox1.Text = "groupBox1";
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new Font("Segoe UI", 9F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point, 0);
+            label5.ForeColor = Color.RoyalBlue;
+            label5.Location = new Point(245, 326);
+            label5.Name = "label5";
+            label5.Size = new Size(122, 20);
+            label5.TabIndex = 8;
+            label5.Text = "Daftar Sekarang";
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(114, 326);
+            label4.Name = "label4";
+            label4.Size = new Size(137, 20);
+            label4.TabIndex = 7;
+            label4.Text = "Belum punya akun?";
             // 
             // LoginControl
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(button2);
-            Controls.Add(textBox2);
-            Controls.Add(textBox1);
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(groupBox1);
@@ -139,5 +163,7 @@
         private TextBox textBox2;
         private Button button2;
         private GroupBox groupBox1;
+        private Label label5;
+        private Label label4;
     }
 }
