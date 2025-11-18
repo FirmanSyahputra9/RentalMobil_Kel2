@@ -55,7 +55,7 @@ namespace RentalMobil_Kel2
                 {
                     command.Parameters.AddWithValue("@id", id_user);
                     command.Parameters.AddWithValue("@name", nama);
-                    command.Parameters.AddWithValue("@username", username);
+                    command.Parameters.AddWithValue("@user", username);
                     command.Parameters.AddWithValue("@pass", password);
                     command.Parameters.AddWithValue("@type", type);
                     command.Parameters.AddWithValue("@status", dbStatus);

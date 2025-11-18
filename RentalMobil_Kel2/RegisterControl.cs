@@ -40,9 +40,9 @@ namespace RentalMobil_Kel2
 
             id_user = this.textBox1.Text;
             nama = this.textBox2.Text;
-            username = this.textBox4.Text;
-            password = this.textBox5.Text;
-            kon_password = this.textBox3.Text;
+            username = this.textBox3.Text;
+            password = this.textBox4.Text;
+            kon_password = this.textBox5.Text;
             status = true;
             type = "user";
 
