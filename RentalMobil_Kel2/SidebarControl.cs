@@ -33,11 +33,6 @@ namespace RentalMobil_Kel2
 
         }
 
-        private void HomeNav_Click(object sender, EventArgs e)
-        {
-            NavigationRequested?.Invoke(this, "Home");
-        }
-
         private void RentalNav_Click(object sender, EventArgs e)
         {
             NavigationRequested?.Invoke(this, "Rental");
@@ -88,8 +83,5 @@ namespace RentalMobil_Kel2
                 AuthNav.Text = "Login";
             }
         }
-
-
-
     }
 }
