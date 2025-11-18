@@ -16,5 +16,10 @@ namespace RentalMobil_Kel2
         {
             InitializeComponent();
         }
+
+        private void BeRent_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

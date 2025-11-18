@@ -28,18 +28,36 @@
         /// </summary>
         private void InitializeComponent()
         {
+            BeRent = new Label();
             SuspendLayout();
+            // 
+            // BeRent
+            // 
+            BeRent.AutoSize = true;
+            BeRent.Font = new Font("Cooper Black", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            BeRent.ImageAlign = ContentAlignment.MiddleLeft;
+            BeRent.Location = new Point(128, 311);
+            BeRent.Name = "BeRent";
+            BeRent.Size = new Size(646, 46);
+            BeRent.TabIndex = 0;
+            BeRent.Text = "SELAMAT DATANG DI BeRent";
+            BeRent.TextAlign = ContentAlignment.TopCenter;
+            BeRent.Click += BeRent_Click;
             // 
             // MainControl
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Aquamarine;
+            Controls.Add(BeRent);
             Name = "MainControl";
             Size = new Size(890, 768);
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
+
+        private Label BeRent;
     }
 }
