@@ -1,6 +1,6 @@
 ﻿namespace RentalMobil_Kel2
 {
-    partial class SidebarControl
+    partial class SidebarUserControl
     {
         /// <summary> 
         /// Required designer variable.
@@ -29,15 +29,15 @@
         private void InitializeComponent()
         {
             groupBox1 = new GroupBox();
+            label1 = new Label();
             ExitNav = new Button();
             AddUserNav = new Button();
             AddCarNav = new Button();
             ReturnNav = new Button();
             RentalNav = new Button();
             AuthNav = new Button();
-            HomeNav = new Button();
             pictureBox2 = new PictureBox();
-            label1 = new Label();
+            HomeNav = new Button();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             SuspendLayout();
@@ -45,17 +45,27 @@
             // groupBox1
             // 
             groupBox1.BackColor = Color.LightGray;
+            groupBox1.Controls.Add(label1);
             groupBox1.Controls.Add(ExitNav);
             groupBox1.Controls.Add(AddUserNav);
             groupBox1.Controls.Add(AddCarNav);
             groupBox1.Controls.Add(ReturnNav);
             groupBox1.Controls.Add(RentalNav);
             groupBox1.Controls.Add(AuthNav);
-            groupBox1.Location = new Point(19, 123);
+            groupBox1.Location = new Point(32, 128);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new Size(252, 633);
-            groupBox1.TabIndex = 0;
+            groupBox1.TabIndex = 4;
             groupBox1.TabStop = false;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(124, 1);
+            label1.Name = "label1";
+            label1.Size = new Size(38, 20);
+            label1.TabIndex = 9;
+            label1.Text = "User";
             // 
             // ExitNav
             // 
@@ -67,7 +77,6 @@
             ExitNav.TabIndex = 5;
             ExitNav.Text = "ExitNav";
             ExitNav.UseVisualStyleBackColor = false;
-            ExitNav.Click += ExitNav_Click;
             // 
             // AddUserNav
             // 
@@ -79,7 +88,6 @@
             AddUserNav.TabIndex = 4;
             AddUserNav.Text = "AddUserNav";
             AddUserNav.UseVisualStyleBackColor = false;
-            AddUserNav.Click += AddUserNav_Click;
             // 
             // AddCarNav
             // 
@@ -91,7 +99,6 @@
             AddCarNav.TabIndex = 3;
             AddCarNav.Text = "AddCarNav";
             AddCarNav.UseVisualStyleBackColor = false;
-            AddCarNav.Click += AddCarNav_Click;
             // 
             // ReturnNav
             // 
@@ -103,7 +110,6 @@
             ReturnNav.TabIndex = 2;
             ReturnNav.Text = "ReturnNav";
             ReturnNav.UseVisualStyleBackColor = false;
-            ReturnNav.Click += ReturnNav_Click_1;
             // 
             // RentalNav
             // 
@@ -129,48 +135,38 @@
             AuthNav.UseVisualStyleBackColor = false;
             AuthNav.Click += AuthNav_Click;
             // 
+            // pictureBox2
+            // 
+            pictureBox2.Location = new Point(104, 48);
+            pictureBox2.Name = "pictureBox2";
+            pictureBox2.Size = new Size(125, 62);
+            pictureBox2.TabIndex = 6;
+            pictureBox2.TabStop = false;
+            // 
             // HomeNav
             // 
-            HomeNav.Location = new Point(3, 3);
+            HomeNav.Location = new Point(16, 8);
             HomeNav.Name = "HomeNav";
             HomeNav.Size = new Size(41, 29);
-            HomeNav.TabIndex = 1;
+            HomeNav.TabIndex = 5;
             HomeNav.Text = "HomeNav";
             HomeNav.UseVisualStyleBackColor = true;
             HomeNav.Click += HomeNav_Click;
             // 
-            // pictureBox2
-            // 
-            pictureBox2.Location = new Point(292, 95);
-            pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(125, 62);
-            pictureBox2.TabIndex = 3;
-            pictureBox2.TabStop = false;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(235, 95);
-            label1.Name = "label1";
-            label1.Size = new Size(53, 20);
-            label1.TabIndex = 8;
-            label1.Text = "Admin";
-            // 
-            // SidebarControl
+            // SidebarUserControl
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.DimGray;
-            Controls.Add(label1);
+            Controls.Add(groupBox1);
             Controls.Add(pictureBox2);
             Controls.Add(HomeNav);
-            Controls.Add(groupBox1);
-            Name = "SidebarControl";
+            Name = "SidebarUserControl";
             Size = new Size(300, 768);
             groupBox1.ResumeLayout(false);
+            groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
@@ -182,8 +178,8 @@
         private Button ReturnNav;
         private Button RentalNav;
         private Button AuthNav;
-        private Button HomeNav;
         private PictureBox pictureBox2;
+        private Button HomeNav;
         private Label label1;
     }
 }

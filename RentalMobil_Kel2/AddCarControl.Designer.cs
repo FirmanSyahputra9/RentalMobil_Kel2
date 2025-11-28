@@ -45,11 +45,12 @@
             label3 = new Label();
             label2 = new Label();
             btnAdd = new Button();
-            button2 = new Button();
-            button3 = new Button();
-            button4 = new Button();
+            btnStatus = new Button();
+            btnRefresh = new Button();
+            btnDel = new Button();
             textBox6 = new TextBox();
             dataGridView1 = new DataGridView();
+            btnSave = new Button();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
@@ -107,6 +108,7 @@
             textBox4.Name = "textBox4";
             textBox4.Size = new Size(309, 27);
             textBox4.TabIndex = 11;
+            textBox4.TextChanged += textBox4_TextChanged;
             // 
             // comboBox1
             // 
@@ -115,6 +117,7 @@
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(121, 28);
             comboBox1.TabIndex = 10;
+            comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             // 
             // textBox3
             // 
@@ -129,6 +132,7 @@
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(309, 27);
             textBox2.TabIndex = 8;
+            textBox2.TextChanged += textBox2_TextChanged;
             // 
             // textBox1
             // 
@@ -208,34 +212,37 @@
             btnAdd.TabIndex = 2;
             btnAdd.Text = "Tambah";
             btnAdd.UseVisualStyleBackColor = true;
-            btnAdd.Click += btnAdd_Click;
+            btnAdd.Click += btnAdd_Click_1;
             // 
-            // button2
+            // btnStatus
             // 
-            button2.Location = new Point(304, 357);
-            button2.Name = "button2";
-            button2.Size = new Size(134, 81);
-            button2.TabIndex = 3;
-            button2.Text = "button2";
-            button2.UseVisualStyleBackColor = true;
+            btnStatus.Location = new Point(258, 357);
+            btnStatus.Name = "btnStatus";
+            btnStatus.Size = new Size(134, 81);
+            btnStatus.TabIndex = 3;
+            btnStatus.Text = "Ubah Status";
+            btnStatus.UseVisualStyleBackColor = true;
+            btnStatus.Click += btnStatus_Click;
             // 
-            // button3
+            // btnRefresh
             // 
-            button3.Location = new Point(684, 357);
-            button3.Name = "button3";
-            button3.Size = new Size(134, 81);
-            button3.TabIndex = 4;
-            button3.Text = "button3";
-            button3.UseVisualStyleBackColor = true;
+            btnRefresh.Location = new Point(538, 357);
+            btnRefresh.Name = "btnRefresh";
+            btnRefresh.Size = new Size(134, 81);
+            btnRefresh.TabIndex = 4;
+            btnRefresh.Text = "Refresh";
+            btnRefresh.UseVisualStyleBackColor = true;
+            btnRefresh.Click += btnRefresh_Click;
             // 
-            // button4
+            // btnDel
             // 
-            button4.Location = new Point(506, 357);
-            button4.Name = "button4";
-            button4.Size = new Size(134, 81);
-            button4.TabIndex = 5;
-            button4.Text = "button4";
-            button4.UseVisualStyleBackColor = true;
+            btnDel.Location = new Point(398, 357);
+            btnDel.Name = "btnDel";
+            btnDel.Size = new Size(134, 81);
+            btnDel.TabIndex = 5;
+            btnDel.Text = "Hapus";
+            btnDel.UseVisualStyleBackColor = true;
+            btnDel.Click += btnDel_Click;
             // 
             // textBox6
             // 
@@ -253,15 +260,26 @@
             dataGridView1.Size = new Size(835, 188);
             dataGridView1.TabIndex = 7;
             // 
+            // btnSave
+            // 
+            btnSave.Location = new Point(678, 357);
+            btnSave.Name = "btnSave";
+            btnSave.Size = new Size(134, 81);
+            btnSave.TabIndex = 8;
+            btnSave.Text = "Simpan";
+            btnSave.UseVisualStyleBackColor = true;
+            btnSave.Click += btnEdit_Click;
+            // 
             // AddCarControl
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(btnSave);
             Controls.Add(dataGridView1);
             Controls.Add(textBox6);
-            Controls.Add(button4);
-            Controls.Add(button3);
-            Controls.Add(button2);
+            Controls.Add(btnDel);
+            Controls.Add(btnRefresh);
+            Controls.Add(btnStatus);
             Controls.Add(btnAdd);
             Controls.Add(groupBox1);
             Controls.Add(label1);
@@ -293,10 +311,11 @@
         private TextBox textBox2;
         private TextBox textBox1;
         private Button btnAdd;
-        private Button button2;
-        private Button button3;
-        private Button button4;
+        private Button btnStatus;
+        private Button btnRefresh;
+        private Button btnDel;
         private TextBox textBox6;
         private DataGridView dataGridView1;
+        private Button btnSave;
     }
 }

@@ -8,10 +8,13 @@ namespace RentalMobil_Kel2
     {
         string connStr;
         private SidebarControl sidebar;
+        private SidebarUserControl sidebarUser;
         private MainControl main;
         private AuthControl auth;
         private RentalControl rental;
+        private RentalUserControl rentalUser;
         private ReturnControl ReturnControl;
+        private string _loggedInUserType = string.Empty;
 
         public Form1()
         {
@@ -23,6 +26,11 @@ namespace RentalMobil_Kel2
             LoadSidebar();
             LoadUserControl(new AuthControl(this));
 
+        }
+
+        public bool IsAdmin()
+        {
+            return _loggedInUserType.ToLower() == "admin";
         }
 
         public bool CheckDatabaseConnection()
@@ -90,12 +98,11 @@ namespace RentalMobil_Kel2
         }
 
 
-        // login
         public int AuthenticateUser(string username, string password)
         {
             string hashedPassword = password;
 
-            string query = "SELECT status FROM user WHERE username = @user AND password = @pass LIMIT 1";
+            string query = "SELECT status,type FROM user WHERE username = @user AND password = @pass LIMIT 1";
 
             using (MySqlConnection connection = new MySqlConnection(connStr))
             {
@@ -107,20 +114,28 @@ namespace RentalMobil_Kel2
                     try
                     {
                         connection.Open();
-                        object result = command.ExecuteScalar();
+                        using (var reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                int status = reader.GetInt32("status");
+                                string userType = reader.GetString("type");
+                                _loggedInUserType = userType;
+                                if (status == 0)
+                                    return 0; 
 
-                        if (result == null)
-                            return -1;
-
-                        int status = Convert.ToInt32(result);
-
-                        if (status == 0)
-                            return 0; 
-
-                        return 1;
+                                return 1;
+                            }
+                            else
+                            {
+                                _loggedInUserType = string.Empty;
+                                return -1;
+                            }
+                        }
                     }
                     catch (MySqlException ex)
                     {
+                        _loggedInUserType = string.Empty;
                         MessageBox.Show($"Kesalahan Otentikasi DB: {ex.Message}", "Kesalahan Login", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return -1;
                     }
@@ -128,15 +143,18 @@ namespace RentalMobil_Kel2
             }
         }
 
-        // Data Mobil
         public DataTable GetCarData()
         {
-            string query = @"SELECT code AS KODE, merk AS MEREK, type as TIPE, year AS YEAR, nopol AS NOPOL, price AS HARGA,
-                 CASE 
-                    WHEN status = 1 THEN 'Tersedia'
-                    ELSE 'Tidak Tersedia'
-                 END AS Status
-                 FROM car";
+            string query = @"SELECT code AS KODE, merk AS MEREK, type as TIPE, year AS TAHUN, nopol AS NOPOL, price AS HARGA, 
+             CASE 
+                WHEN status = 1 THEN 'Tersedia'
+                ELSE 'Tidak Tersedia'
+             END AS Status,
+             CASE 
+                WHEN `show` = 1 THEN 'Ya'
+                ELSE 'Tidak'
+             END AS Tampil 
+             FROM car";
 
             DataTable dt = new DataTable();
 
@@ -154,11 +172,35 @@ namespace RentalMobil_Kel2
                     }
                     catch (MySqlException ex)
                     {
-                        MessageBox.Show($"Gagal mengambil data mahasiswa: {ex.Message}", "Kesalahan DB", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show($"Gagal mengambil data mobil: {ex.Message}", "Kesalahan DB", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }
             return dt;
+        }
+
+        public int GetCarCountByMerk(string merk)
+        {
+            string query = "SELECT COUNT(*) FROM car WHERE merk = @merk";
+            int count = 0;
+
+            using (MySqlConnection connection = new MySqlConnection(connStr))
+            {
+                using (MySqlCommand command = new MySqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@merk", merk);
+                    try
+                    {
+                        connection.Open();
+                        count = Convert.ToInt32(command.ExecuteScalar());
+                    }
+                    catch (MySqlException ex)
+                    {
+                        MessageBox.Show($"Gagal mengambil hitungan mobil: {ex.Message}", "Kesalahan Database", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            return count;
         }
 
         public bool SaveCarData(string code, string merk, string type, int tahun, string nopol, int harga, bool status)
@@ -193,6 +235,103 @@ namespace RentalMobil_Kel2
             }
         }
 
+        // Tambahkan ini ke dalam class Form1
+        public bool UpdateCarData(string code, string merk, string type, int tahun, string nopol, int harga, bool status)
+        {
+            int dbStatus = status ? 1 : 0;
+            // Perintah UPDATE menggunakan KODE sebagai kunci (WHERE code = @code)
+            string query = @"UPDATE car SET 
+                        merk = @merk, 
+                        type = @tipe, 
+                        year = @tahun, 
+                        nopol = @nopol, 
+                        price = @harga, 
+                        status = @status 
+                     WHERE code = @code";
+
+            using (MySqlConnection connection = new MySqlConnection(connStr))
+            {
+                using (MySqlCommand command = new MySqlCommand(query, connection))
+                {
+                    // Semua parameter dimasukkan, termasuk @code di WHERE
+                    command.Parameters.AddWithValue("@merk", merk);
+                    command.Parameters.AddWithValue("@tipe", type);
+                    command.Parameters.AddWithValue("@tahun", tahun);
+                    command.Parameters.AddWithValue("@nopol", nopol);
+                    command.Parameters.AddWithValue("@harga", harga);
+                    command.Parameters.AddWithValue("@status", dbStatus);
+                    command.Parameters.AddWithValue("@code", code);
+
+                    try
+                    {
+                        connection.Open();
+                        int rowsAffected = command.ExecuteNonQuery();
+                        return rowsAffected > 0;
+                    }
+                    catch (MySqlException ex)
+                    {
+                        MessageBox.Show($"Gagal memperbarui data mobil. Error: {ex.Message}", "Kesalahan Database", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return false;
+                    }
+                }
+            }
+        }
+
+        // Di dalam class Form1
+
+        public bool UpdateCarStatus(string code, bool status)
+        {
+            // Ubah status boolean menjadi integer 1 (true = Tersedia) atau 0 (false = Tidak Tersedia) untuk DB
+            int dbStatus = status ? 1 : 0;
+
+            string query = "UPDATE car SET status = @status WHERE code = @code";
+
+            using (MySqlConnection connection = new MySqlConnection(connStr))
+            {
+                using (MySqlCommand command = new MySqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@status", dbStatus);
+                    command.Parameters.AddWithValue("@code", code);
+                    try
+                    {
+                        connection.Open();
+                        int rowsAffected = command.ExecuteNonQuery();
+                        return rowsAffected > 0;
+                    }
+                    catch (MySqlException ex)
+                    {
+                        MessageBox.Show($"Gagal memperbarui status mobil. Error: {ex.Message}", "Kesalahan Database", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return false;
+                    }
+                }
+            }
+        }
+
+        public bool UpdateCarshow(string code, bool show)
+        {
+            int dbShow = show ? 1 : 0;
+            string query = "UPDATE car SET `show` = @show WHERE code = @code";
+            using (MySqlConnection connection = new MySqlConnection(connStr))
+            {
+                using (MySqlCommand command = new MySqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@show", dbShow);
+                    command.Parameters.AddWithValue("@code", code);
+                    try
+                    {
+                        connection.Open();
+                        int rowsAffected = command.ExecuteNonQuery();
+                        return rowsAffected > 0;
+                    }
+                    catch (MySqlException ex)
+                    {
+                        MessageBox.Show($"Gagal memperbarui status tampil mobil. Error: {ex.Message}", "Kesalahan Database", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return false;
+                    }
+                }
+            }
+        }
+
 
         private void LoadUserControl(UserControl newControl)
         {
@@ -203,21 +342,52 @@ namespace RentalMobil_Kel2
 
         private void LoadSidebar()
         {
-            sidebar = new SidebarControl();
-            sidebar.Dock = DockStyle.Fill;
-            panel1.Controls.Add(sidebar);
+            panel1.Controls.Clear();
+            UserControl controlToLoad;
+            if (_loggedInUserType.ToLower() == "admin")
+            {
+                sidebar = new SidebarControl();
+                controlToLoad = sidebar;
+                sidebar.NavigationRequested += Sidebar_NavigationRequested;
+                sidebar.SetNavigationVisibility(true);
+            }
+            else if (_loggedInUserType.ToLower() == "user")
+            {
+                sidebarUser = new SidebarUserControl(); 
+                controlToLoad = sidebarUser;
+     
+                sidebarUser.NavigationRequested += Sidebar_NavigationRequested;
+                sidebarUser.SetNavigationVisibility(true);
+            }
+            else 
+            {
+                sidebarUser = new SidebarUserControl();
+                controlToLoad = sidebarUser;
+                sidebarUser.NavigationRequested += Sidebar_NavigationRequested;
+                sidebarUser.SetNavigationVisibility(false); 
+            }
+
+            controlToLoad.Dock = DockStyle.Fill;
+            panel1.Controls.Add(controlToLoad);
+
             panel2.Visible = true;
             panel1.Visible = true;
-
-            sidebar.SetNavigationVisibility(false);
-
-            sidebar.NavigationRequested += Sidebar_NavigationRequested;
         }
 
         public void LoginSuccess()
         {
             panel1.Visible = true;
-            sidebar.SetNavigationVisibility(true);
+            LoadSidebar();
+
+            if (IsAdmin())
+            {
+                MessageBox.Show("Login Admin Berhasil!", "Welcome", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("Login User Berhasil!", "Welcome", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
             LoadUserControl(new MainControl());
         }
 
@@ -234,21 +404,52 @@ namespace RentalMobil_Kel2
                     controlToLoad = new MainControl();
                     break;
                 case "Logout":
-                    //panel1.Visible = false;
-                    sidebar.SetNavigationVisibility(false);
+                    _loggedInUserType = string.Empty;
+                    if (IsAdmin())
+                    {
+                        sidebar.SetNavigationVisibility(false);
+                    }
+                    else
+                    {
+                        sidebarUser.SetNavigationVisibility(false);
+                    }
                     controlToLoad = (new AuthControl(this));
                     break;
                 case "Rental":
-                    controlToLoad = new RentalControl();
-                    break;
+                    if (IsAdmin())
+                    {
+                        controlToLoad = new RentalControl();
+                    }
+                    else
+                    {
+                        controlToLoad = new RentalUserControl();
+                    }
+
+                        break;
                 case "ReturnControl":
                     controlToLoad = new ReturnControl();
                     break;
                 case "AddCar":
-                    controlToLoad = new AddCarControl(this);
+                    if (IsAdmin())
+                    {
+                        controlToLoad = new AddCarControl(this);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Anda tidak memiliki izin untuk mengakses menu ini.", "Akses Ditolak", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
                     break;
                 case "AddUser":
-                    controlToLoad = new AddUserControl();
+                    if (IsAdmin())
+                    {
+                        controlToLoad = new AddUserControl();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Anda tidak memiliki izin untuk mengakses menu ini.", "Akses Ditolak", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
                     break;
                 case "Exit":
                     Application.Exit();
