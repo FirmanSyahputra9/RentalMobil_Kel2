@@ -29,15 +29,16 @@
         private void InitializeComponent()
         {
             label1 = new Label();
-            button1 = new Button();
             label2 = new Label();
             label3 = new Label();
             textBox1 = new TextBox();
             textBox2 = new TextBox();
             button2 = new Button();
             groupBox1 = new GroupBox();
+            button1 = new Button();
             label5 = new Label();
             label4 = new Label();
+            mySqlCommand1 = new MySql.Data.MySqlClient.MySqlCommand();
             groupBox1.SuspendLayout();
             SuspendLayout();
             // 
@@ -50,16 +51,6 @@
             label1.Size = new Size(134, 39);
             label1.TabIndex = 0;
             label1.Text = "LOGIN";
-            // 
-            // button1
-            // 
-            button1.Location = new Point(237, 372);
-            button1.Name = "button1";
-            button1.Size = new Size(130, 77);
-            button1.TabIndex = 1;
-            button1.Text = "Register";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
             // 
             // label2
             // 
@@ -95,7 +86,7 @@
             // 
             // button2
             // 
-            button2.Location = new Point(273, 264);
+            button2.Location = new Point(273, 249);
             button2.Name = "button2";
             button2.Size = new Size(94, 29);
             button2.TabIndex = 6;
@@ -105,12 +96,12 @@
             // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(button1);
             groupBox1.Controls.Add(label5);
             groupBox1.Controls.Add(label4);
             groupBox1.Controls.Add(textBox2);
             groupBox1.Controls.Add(button2);
             groupBox1.Controls.Add(textBox1);
-            groupBox1.Controls.Add(button1);
             groupBox1.Controls.Add(label1);
             groupBox1.Location = new Point(33, 42);
             groupBox1.Name = "groupBox1";
@@ -118,25 +109,42 @@
             groupBox1.TabIndex = 7;
             groupBox1.TabStop = false;
             // 
+            // button1
+            // 
+            button1.Location = new Point(333, 187);
+            button1.Name = "button1";
+            button1.Size = new Size(28, 21);
+            button1.TabIndex = 9;
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
+            // 
             // label5
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 9F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point, 0);
             label5.ForeColor = Color.RoyalBlue;
-            label5.Location = new Point(245, 326);
+            label5.Location = new Point(245, 219);
             label5.Name = "label5";
             label5.Size = new Size(122, 20);
             label5.TabIndex = 8;
             label5.Text = "Daftar Sekarang";
+            label5.Click += label5_Click;
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(114, 326);
+            label4.Location = new Point(114, 219);
             label4.Name = "label4";
             label4.Size = new Size(137, 20);
             label4.TabIndex = 7;
             label4.Text = "Belum punya akun?";
+            // 
+            // mySqlCommand1
+            // 
+            mySqlCommand1.CacheAge = 0;
+            mySqlCommand1.Connection = null;
+            mySqlCommand1.EnableCaching = false;
+            mySqlCommand1.Transaction = null;
             // 
             // LoginControl
             // 
@@ -156,7 +164,6 @@
         #endregion
 
         private Label label1;
-        private Button button1;
         private Label label2;
         private Label label3;
         private TextBox textBox1;
@@ -165,5 +172,7 @@
         private GroupBox groupBox1;
         private Label label5;
         private Label label4;
+        private Button button1;
+        private MySql.Data.MySqlClient.MySqlCommand mySqlCommand1;
     }
 }

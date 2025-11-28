@@ -19,19 +19,10 @@ namespace RentalMobil_Kel2
         {
             InitializeComponent();
             this.parentForm = parentForm;
+            textBox2.UseSystemPasswordChar = true;
+            button1.Text = "🙈"; 
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            if (this.Parent.Parent is AuthControl authContainer)
-            {
-                authContainer.LoadRegister();
-            }
-            else
-            {
-                MessageBox.Show("Error: Tidak dapat menemukan panel AuthControl.", "Kesalahan Navigasi");
-            }
-        }
 
         private void button2_Click(object sender, EventArgs e)
         {
@@ -53,7 +44,7 @@ namespace RentalMobil_Kel2
             }
             else if (authResult == 0)
             {
-                MessageBox.Show("Akun Anda tidak aktif. Hubungi admin!", "Akses Ditolak");
+                MessageBox.Show("Akun Anda Belum aktif. Hubungi admin!", "Akses Ditolak");
                 textBox2.Clear();
             }
             else
@@ -62,5 +53,33 @@ namespace RentalMobil_Kel2
                 textBox2.Clear();
             }
         }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+            if (this.Parent.Parent is AuthControl authContainer)
+            {
+                authContainer.LoadRegister();
+            }
+            else
+            {
+                MessageBox.Show("Error: Tidak dapat menemukan panel AuthControl.", "Kesalahan Navigasi");
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (textBox2.UseSystemPasswordChar)
+            {
+                textBox2.UseSystemPasswordChar = false;
+                button1.Text = "🫣"; 
+            }
+            else
+            {
+                textBox2.UseSystemPasswordChar = true;
+                button1.Text = "🙈";
+            }
+        }
+
     }
 }

@@ -17,20 +17,12 @@ namespace RentalMobil_Kel2
         {
             InitializeComponent();
             this.parentForm = parentForm;
+            textBox4.UseSystemPasswordChar = true;
+            textBox5.UseSystemPasswordChar = true;
+            button1.Text = "🙈";
+            button2.Text = "🙈";
         }
 
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            if (this.Parent.Parent is AuthControl authContainer)
-            {
-                authContainer.LoadLogin();
-            }
-            else
-            {
-                MessageBox.Show("Error: Tidak dapat menemukan wadah AuthControl.", "Kesalahan Navigasi");
-            }
-        }
 
         private void btnRegister_Click(object sender, EventArgs e)
         {
@@ -83,6 +75,46 @@ namespace RentalMobil_Kel2
             this.textBox3.Clear();
             this.textBox4.Clear();
             this.textBox5.Clear();
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+            if (this.Parent.Parent is AuthControl authContainer)
+            {
+                authContainer.LoadLogin();
+            }
+            else
+            {
+                MessageBox.Show("Error: Tidak dapat menemukan wadah AuthControl.", "Kesalahan Navigasi");
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (textBox4.UseSystemPasswordChar)
+            {
+                textBox4.UseSystemPasswordChar = false;
+                button1.Text = "🫣";
+            }
+            else
+            {
+                textBox4.UseSystemPasswordChar = true;
+                button1.Text = "🙈";
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (textBox5.UseSystemPasswordChar)
+            {
+                textBox5.UseSystemPasswordChar = false;
+                button2.Text = "🫣";
+            }
+            else
+            {
+                textBox5.UseSystemPasswordChar = true;
+                button2.Text = "🙈";
+            }
         }
     }
 }

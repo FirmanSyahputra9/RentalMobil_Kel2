@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            button1 = new Button();
             label2 = new Label();
             btnRegister = new Button();
             textBox2 = new TextBox();
@@ -36,7 +35,11 @@
             label3 = new Label();
             label4 = new Label();
             groupBox1 = new GroupBox();
+            button2 = new Button();
+            button1 = new Button();
+            label7 = new Label();
             textBox5 = new TextBox();
+            label8 = new Label();
             label6 = new Label();
             label5 = new Label();
             label1 = new Label();
@@ -45,28 +48,19 @@
             groupBox1.SuspendLayout();
             SuspendLayout();
             // 
-            // button1
-            // 
-            button1.Location = new Point(6, 17);
-            button1.Name = "button1";
-            button1.Size = new Size(51, 24);
-            button1.TabIndex = 1;
-            button1.Text = "login";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
-            // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(169, 0);
+            label2.Font = new Font("Cooper Black", 19.8000011F);
+            label2.Location = new Point(121, 0);
             label2.Name = "label2";
-            label2.Size = new Size(63, 20);
+            label2.Size = new Size(161, 39);
             label2.TabIndex = 8;
             label2.Text = "Register";
             // 
             // btnRegister
             // 
-            btnRegister.Location = new Point(273, 396);
+            btnRegister.Location = new Point(273, 402);
             btnRegister.Name = "btnRegister";
             btnRegister.Size = new Size(94, 29);
             btnRegister.TabIndex = 13;
@@ -108,7 +102,11 @@
             // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(button2);
+            groupBox1.Controls.Add(button1);
+            groupBox1.Controls.Add(label7);
             groupBox1.Controls.Add(textBox5);
+            groupBox1.Controls.Add(label8);
             groupBox1.Controls.Add(label6);
             groupBox1.Controls.Add(label5);
             groupBox1.Controls.Add(label1);
@@ -116,13 +114,41 @@
             groupBox1.Controls.Add(textBox3);
             groupBox1.Controls.Add(btnRegister);
             groupBox1.Controls.Add(label2);
-            groupBox1.Controls.Add(button1);
             groupBox1.Location = new Point(31, 35);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new Size(389, 481);
             groupBox1.TabIndex = 14;
             groupBox1.TabStop = false;
-            groupBox1.Text = "groupBox1";
+            // 
+            // button2
+            // 
+            button2.Location = new Point(336, 342);
+            button2.Name = "button2";
+            button2.Size = new Size(28, 21);
+            button2.TabIndex = 22;
+            button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
+            // 
+            // button1
+            // 
+            button1.Location = new Point(336, 296);
+            button1.Name = "button1";
+            button1.Size = new Size(28, 21);
+            button1.TabIndex = 21;
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Font = new Font("Segoe UI", 9F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point, 0);
+            label7.ForeColor = Color.RoyalBlue;
+            label7.Location = new Point(243, 373);
+            label7.Name = "label7";
+            label7.Size = new Size(121, 20);
+            label7.TabIndex = 16;
+            label7.Text = "Login Sekarang!";
+            label7.Click += label7_Click;
             // 
             // textBox5
             // 
@@ -131,6 +157,15 @@
             textBox5.Size = new Size(226, 27);
             textBox5.TabIndex = 20;
             // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Location = new Point(112, 373);
+            label8.Name = "label8";
+            label8.Size = new Size(136, 20);
+            label8.TabIndex = 15;
+            label8.Text = "Sudah punya akun?";
+            // 
             // label6
             // 
             label6.AutoSize = true;
@@ -138,7 +173,7 @@
             label6.Name = "label6";
             label6.Size = new Size(113, 20);
             label6.TabIndex = 19;
-            label6.Text = "Password Ulang";
+            label6.Text = "Ulang Password";
             // 
             // label5
             // 
@@ -190,7 +225,6 @@
         }
 
         #endregion
-        private Button button1;
         private Label label2;
         private Button btnRegister;
         private TextBox textBox2;
@@ -204,5 +238,9 @@
         private Label label5;
         private Label label1;
         private TextBox textBox5;
+        private Label label7;
+        private Label label8;
+        private Button button2;
+        private Button button1;
     }
 }

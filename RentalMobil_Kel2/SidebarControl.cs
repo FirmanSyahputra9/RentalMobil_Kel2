@@ -15,6 +15,7 @@ namespace RentalMobil_Kel2
         public SidebarControl()
         {
             InitializeComponent();
+            this.HomeNav.Text = "🏠︎";
         }
         public event EventHandler<string> NavigationRequested;
 
@@ -78,6 +79,7 @@ namespace RentalMobil_Kel2
             }
             else
             {
+                HomeNav.Visible = true;
                 AuthNav.Visible = true;
                 RentalNav.Visible = false;
                 ReturnNav.Visible = false;

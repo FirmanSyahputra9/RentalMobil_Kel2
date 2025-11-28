@@ -207,7 +207,7 @@ namespace RentalMobil_Kel2
             sidebar.Dock = DockStyle.Fill;
             panel1.Controls.Add(sidebar);
             panel2.Visible = true;
-            panel1.Visible = false;
+            panel1.Visible = true;
 
             sidebar.SetNavigationVisibility(false);
 
@@ -234,7 +234,7 @@ namespace RentalMobil_Kel2
                     controlToLoad = new MainControl();
                     break;
                 case "Logout":
-                    panel1.Visible = false;
+                    //panel1.Visible = false;
                     sidebar.SetNavigationVisibility(false);
                     controlToLoad = (new AuthControl(this));
                     break;
