@@ -44,6 +44,8 @@
             textBox3 = new TextBox();
             textBox4 = new TextBox();
             groupBox1 = new GroupBox();
+            comboBox2 = new ComboBox();
+            label9 = new Label();
             textBox7 = new TextBox();
             label1 = new Label();
             textBox6 = new TextBox();
@@ -53,8 +55,6 @@
             textBox5 = new TextBox();
             addCarControl1 = new AddCarControl();
             dataGridView1 = new DataGridView();
-            textBox8 = new TextBox();
-            label9 = new Label();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
@@ -74,9 +74,9 @@
             label3.AutoSize = true;
             label3.Location = new Point(280, 143);
             label3.Name = "label3";
-            label3.Size = new Size(55, 20);
+            label3.Size = new Size(33, 20);
             label3.TabIndex = 2;
-            label3.Text = "Id User";
+            label3.Text = "NIK";
             // 
             // label4
             // 
@@ -120,7 +120,7 @@
             btnSave.Name = "btnSave";
             btnSave.Size = new Size(94, 29);
             btnSave.TabIndex = 7;
-            btnSave.Text = "Add";
+            btnSave.Text = "Save";
             btnSave.UseVisualStyleBackColor = true;
             btnSave.Click += btnSave_Click;
             // 
@@ -193,7 +193,7 @@
             // 
             // groupBox1
             // 
-            groupBox1.Controls.Add(textBox8);
+            groupBox1.Controls.Add(comboBox2);
             groupBox1.Controls.Add(label9);
             groupBox1.Controls.Add(textBox7);
             groupBox1.Controls.Add(label1);
@@ -210,6 +210,25 @@
             groupBox1.TabIndex = 18;
             groupBox1.TabStop = false;
             groupBox1.Text = "Data User";
+            // 
+            // comboBox2
+            // 
+            comboBox2.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBox2.FormattingEnabled = true;
+            comboBox2.Location = new Point(244, 199);
+            comboBox2.Name = "comboBox2";
+            comboBox2.Size = new Size(236, 28);
+            comboBox2.TabIndex = 25;
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Font = new Font("Segoe UI", 9F);
+            label9.Location = new Point(126, 202);
+            label9.Name = "label9";
+            label9.Size = new Size(49, 20);
+            label9.TabIndex = 24;
+            label9.Text = "Status";
             // 
             // textBox7
             // 
@@ -249,6 +268,7 @@
             // 
             // comboBox1
             // 
+            comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBox1.FormattingEnabled = true;
             comboBox1.Location = new Point(244, 332);
             comboBox1.Name = "comboBox1";
@@ -286,24 +306,6 @@
             dataGridView1.RowHeadersWidth = 51;
             dataGridView1.Size = new Size(843, 179);
             dataGridView1.TabIndex = 19;
-            // 
-            // textBox8
-            // 
-            textBox8.Font = new Font("Segoe UI", 9F);
-            textBox8.Location = new Point(244, 199);
-            textBox8.Name = "textBox8";
-            textBox8.Size = new Size(236, 27);
-            textBox8.TabIndex = 23;
-            // 
-            // label9
-            // 
-            label9.AutoSize = true;
-            label9.Font = new Font("Segoe UI", 9F);
-            label9.Location = new Point(126, 202);
-            label9.Name = "label9";
-            label9.Size = new Size(49, 20);
-            label9.TabIndex = 24;
-            label9.Text = "Status";
             // 
             // AddUserControl
             // 
@@ -361,7 +363,7 @@
         private TextBox textBox6;
         private TextBox textBox7;
         private Label label1;
-        private TextBox textBox8;
         private Label label9;
+        private ComboBox comboBox2;
     }
 }

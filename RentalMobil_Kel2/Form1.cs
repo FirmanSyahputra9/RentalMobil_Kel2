@@ -95,7 +95,7 @@ namespace RentalMobil_Kel2
                 using (MySqlCommand command = new MySqlCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@id_user", id_user);
-                    command.Parameters.AddWithValue("@name", nama);
+                    command.Parameters.AddWithValue("@nama", nama);
                     command.Parameters.AddWithValue("@username", username);
                     command.Parameters.AddWithValue("@password", password);
                     command.Parameters.AddWithValue("@type", type);
@@ -453,7 +453,7 @@ namespace RentalMobil_Kel2
         // UserControl
         public DataTable GetUserData()
         {
-            string query = @"SELECT id_user AS NIK, nama AS NAMA, username AS USERNAME, password AS PASSWORD,type AS ROLE, alamat AS ALAMAT, no_hp AS 'NO HP', 
+            string query = @"SELECT id_user AS NIK, nama AS NAMA, username AS USERNAME, password AS PASSWORD,type AS ROLE, alamat AS ALAMAT, no_hp AS 'NO_HP', 
              CASE 
                 WHEN status = 1 THEN 'Aktif'
                 ELSE 'Belum Aktif'
@@ -483,33 +483,24 @@ namespace RentalMobil_Kel2
             return dt;
         }
 
-
-        public bool SaveUserData(string code, string merk, string type, int tahun, string nopol, int harga, bool status, byte[] imageBlob)
+        public bool updateUser(string id_user, string nama, string username, string password, string type, bool status, string alamat, string no_hp)
         {
             int dbStatus = status ? 1 : 0;
 
-            string query = "INSERT INTO car (code, merk, type, year, nopol, price, status, image_blob) VALUES (@code, @merk, @tipe, @tahun, @nopol, @harga, @status, @imageBlob)";
+            string query = "UPDATE user set nama = @nama, username = @username, password = @password, type = @type, status = @status, alamat = @alamat, no_hp = @no_hp WHERE id_user = @id_user";
 
             using (MySqlConnection connection = new MySqlConnection(connStr))
             {
                 using (MySqlCommand command = new MySqlCommand(query, connection))
                 {
-                    command.Parameters.AddWithValue("@code", code);
-                    command.Parameters.AddWithValue("@merk", merk);
-                    command.Parameters.AddWithValue("@tipe", type);
-                    command.Parameters.AddWithValue("@tahun", tahun);
-                    command.Parameters.AddWithValue("@nopol", nopol);
-                    command.Parameters.AddWithValue("@harga", harga);
+                    command.Parameters.AddWithValue("@id_user", id_user);
+                    command.Parameters.AddWithValue("@nama", nama);
+                    command.Parameters.AddWithValue("@username", username);
+                    command.Parameters.AddWithValue("@password", password);
+                    command.Parameters.AddWithValue("@type", type);
                     command.Parameters.AddWithValue("@status", dbStatus);
-                    if (imageBlob != null)
-                    {
-                        command.Parameters.Add("@imageBlob", MySqlDbType.LongBlob, imageBlob.Length).Value = imageBlob;
-                    }
-                    else
-                    {
-                        command.Parameters.Add("@imageBlob", MySqlDbType.LongBlob).Value = DBNull.Value;
-                    }
-
+                    command.Parameters.AddWithValue("@alamat", alamat);
+                    command.Parameters.AddWithValue("@no_hp", no_hp);
                     try
                     {
                         connection.Open();
@@ -518,13 +509,12 @@ namespace RentalMobil_Kel2
                     }
                     catch (MySqlException ex)
                     {
-                        MessageBox.Show($"Gagal menyimpan data ke database. Error: {ex.Message}", "Kesalahan Database", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show($"Gagal mengupdate data ke database. Error: {ex.Message}", "Kesalahan Database", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return false;
                     }
                 }
             }
         }
-
 
         private void LoadUserControl(UserControl newControl)
         {
