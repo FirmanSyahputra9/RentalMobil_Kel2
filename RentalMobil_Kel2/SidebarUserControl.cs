@@ -23,13 +23,13 @@ namespace RentalMobil_Kel2
             if (isLoggin)
             {
                 AuthNav.Visible = true;
-                ReturnNav.Visible = true;
-                AddCarNav.Visible = true;
-                AddUserNav.Visible = true;
+                ReturnNav.Visible = false;
+                AddCarNav.Visible = false;
+                AddUserNav.Visible = false;
                 RentalNav.Visible = true;
-                ReturnNav.Visible = true;
-                ExitNav.Visible = true;
-                HomeNav.Visible = true;
+                ReturnNav.Visible = false;
+                ExitNav.Visible = false;
+                HomeNav.Visible = false;
 
 
                 AuthNav.Text = "Logout";

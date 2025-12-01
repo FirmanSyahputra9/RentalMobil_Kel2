@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            button1 = new Button();
+            btnReturn = new Button();
             label1 = new Label();
             label2 = new Label();
             label3 = new Label();
@@ -37,13 +37,15 @@
             label6 = new Label();
             label7 = new Label();
             label8 = new Label();
-            textBox1 = new TextBox();
             textBox2 = new TextBox();
             textBox3 = new TextBox();
-            textBox4 = new TextBox();
-            textBox5 = new TextBox();
             textBox6 = new TextBox();
             groupBox1 = new GroupBox();
+            label9 = new Label();
+            dateTimePicker3 = new DateTimePicker();
+            dateTimePicker2 = new DateTimePicker();
+            dateTimePicker1 = new DateTimePicker();
+            comboBox1 = new ComboBox();
             textBox7 = new TextBox();
             button2 = new Button();
             dataGridView1 = new DataGridView();
@@ -51,14 +53,15 @@
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
-            // button1
+            // btnReturn
             // 
-            button1.Location = new Point(164, 400);
-            button1.Name = "button1";
-            button1.Size = new Size(223, 79);
-            button1.TabIndex = 0;
-            button1.Text = "Retun";
-            button1.UseVisualStyleBackColor = true;
+            btnReturn.Location = new Point(164, 400);
+            btnReturn.Name = "btnReturn";
+            btnReturn.Size = new Size(223, 79);
+            btnReturn.TabIndex = 0;
+            btnReturn.Text = "Retun";
+            btnReturn.UseVisualStyleBackColor = true;
+            btnReturn.Click += btnReturn_Click;
             // 
             // label1
             // 
@@ -100,7 +103,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(510, 144);
+            label5.Location = new Point(459, 144);
             label5.Name = "label5";
             label5.Size = new Size(110, 20);
             label5.TabIndex = 5;
@@ -109,7 +112,7 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(510, 192);
+            label6.Location = new Point(459, 192);
             label6.Name = "label6";
             label6.Size = new Size(120, 20);
             label6.TabIndex = 6;
@@ -118,7 +121,7 @@
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(510, 243);
+            label7.Location = new Point(459, 289);
             label7.Name = "label7";
             label7.Size = new Size(110, 20);
             label7.TabIndex = 7;
@@ -127,19 +130,12 @@
             // label8
             // 
             label8.AutoSize = true;
-            label8.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label8.Location = new Point(485, 220);
+            label8.Font = new Font("Segoe UI", 9F);
+            label8.Location = new Point(434, 239);
             label8.Name = "label8";
-            label8.Size = new Size(71, 20);
+            label8.Size = new Size(53, 20);
             label8.TabIndex = 8;
-            label8.Text = "Total Rp.";
-            // 
-            // textBox1
-            // 
-            textBox1.Location = new Point(636, 141);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(155, 27);
-            textBox1.TabIndex = 9;
+            label8.Text = "Denda";
             // 
             // textBox2
             // 
@@ -155,29 +151,20 @@
             textBox3.Size = new Size(155, 27);
             textBox3.TabIndex = 11;
             // 
-            // textBox4
-            // 
-            textBox4.Location = new Point(204, 141);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(155, 27);
-            textBox4.TabIndex = 12;
-            // 
-            // textBox5
-            // 
-            textBox5.Location = new Point(636, 189);
-            textBox5.Name = "textBox5";
-            textBox5.Size = new Size(155, 27);
-            textBox5.TabIndex = 13;
-            // 
             // textBox6
             // 
-            textBox6.Location = new Point(636, 240);
+            textBox6.Location = new Point(585, 286);
             textBox6.Name = "textBox6";
             textBox6.Size = new Size(155, 27);
             textBox6.TabIndex = 14;
             // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(label9);
+            groupBox1.Controls.Add(dateTimePicker3);
+            groupBox1.Controls.Add(dateTimePicker2);
+            groupBox1.Controls.Add(dateTimePicker1);
+            groupBox1.Controls.Add(comboBox1);
             groupBox1.Controls.Add(textBox7);
             groupBox1.Controls.Add(label8);
             groupBox1.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
@@ -188,9 +175,52 @@
             groupBox1.TabStop = false;
             groupBox1.Text = "Data Transaksi Sewa Mobil";
             // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Font = new Font("Segoe UI", 9F);
+            label9.Location = new Point(434, 139);
+            label9.Name = "label9";
+            label9.Size = new Size(57, 20);
+            label9.TabIndex = 20;
+            label9.Text = "Hari Ini";
+            // 
+            // dateTimePicker3
+            // 
+            dateTimePicker3.Font = new Font("Segoe UI", 9F);
+            dateTimePicker3.Location = new Point(560, 134);
+            dateTimePicker3.Name = "dateTimePicker3";
+            dateTimePicker3.Size = new Size(250, 27);
+            dateTimePicker3.TabIndex = 21;
+            // 
+            // dateTimePicker2
+            // 
+            dateTimePicker2.Font = new Font("Segoe UI", 9F);
+            dateTimePicker2.Location = new Point(560, 88);
+            dateTimePicker2.Name = "dateTimePicker2";
+            dateTimePicker2.Size = new Size(250, 27);
+            dateTimePicker2.TabIndex = 19;
+            // 
+            // dateTimePicker1
+            // 
+            dateTimePicker1.Font = new Font("Segoe UI", 9F);
+            dateTimePicker1.Location = new Point(560, 37);
+            dateTimePicker1.Name = "dateTimePicker1";
+            dateTimePicker1.Size = new Size(250, 27);
+            dateTimePicker1.TabIndex = 18;
+            // 
+            // comboBox1
+            // 
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Location = new Point(179, 40);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(151, 31);
+            comboBox1.TabIndex = 17;
+            comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged_1;
+            // 
             // textBox7
             // 
-            textBox7.Location = new Point(611, 215);
+            textBox7.Location = new Point(560, 234);
             textBox7.Name = "textBox7";
             textBox7.Size = new Size(155, 30);
             textBox7.TabIndex = 16;
@@ -220,11 +250,8 @@
             Controls.Add(dataGridView1);
             Controls.Add(button2);
             Controls.Add(textBox6);
-            Controls.Add(textBox5);
-            Controls.Add(textBox4);
             Controls.Add(textBox3);
             Controls.Add(textBox2);
-            Controls.Add(textBox1);
             Controls.Add(label7);
             Controls.Add(label6);
             Controls.Add(label5);
@@ -232,7 +259,7 @@
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
-            Controls.Add(button1);
+            Controls.Add(btnReturn);
             Controls.Add(groupBox1);
             Name = "ReturnControl";
             Size = new Size(890, 768);
@@ -245,7 +272,7 @@
 
         #endregion
 
-        private Button button1;
+        private Button btnReturn;
         private Label label1;
         private Label label2;
         private Label label3;
@@ -254,15 +281,17 @@
         private Label label6;
         private Label label7;
         private Label label8;
-        private TextBox textBox1;
         private TextBox textBox2;
         private TextBox textBox3;
-        private TextBox textBox4;
-        private TextBox textBox5;
         private TextBox textBox6;
         private GroupBox groupBox1;
         private TextBox textBox7;
         private Button button2;
         private DataGridView dataGridView1;
+        private ComboBox comboBox1;
+        private DateTimePicker dateTimePicker1;
+        private DateTimePicker dateTimePicker2;
+        private Label label9;
+        private DateTimePicker dateTimePicker3;
     }
 }

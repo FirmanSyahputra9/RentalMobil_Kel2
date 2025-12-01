@@ -1,5 +1,6 @@
-using MySql.Data.MySqlClient;
+﻿using MySql.Data.MySqlClient;
 using System.Data;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace RentalMobil_Kel2
@@ -144,7 +145,7 @@ namespace RentalMobil_Kel2
                 {
                     command.Parameters.AddWithValue("@user", username);
                     command.Parameters.AddWithValue("@pass", hashedPassword);
-
+                    
                     try
                     {
                         connection.Open();
@@ -181,7 +182,7 @@ namespace RentalMobil_Kel2
         // UserControl
         public DataTable GetCarData()
         {
-            string query = @"SELECT code AS KODE, merk AS MEREK, type as TIPE, year AS TAHUN, nopol AS NOPOL, price AS HARGA, 
+            string query = @"SELECT id,code AS KODE, merk AS MEREK, type as TIPE, year AS TAHUN, nopol AS NOPOL, price AS HARGA, 
              CASE 
                 WHEN status = 1 THEN 'Tersedia'
                 ELSE 'Tidak Tersedia'
@@ -516,6 +517,252 @@ namespace RentalMobil_Kel2
             }
         }
 
+
+        // RentalControl
+
+        public DataTable GetCarReadyData()
+        {
+            string query = @"SELECT id,code AS KODE, merk AS MEREK, type as TIPE, year AS TAHUN, nopol AS NOPOL, price AS HARGA,
+             CASE 
+                WHEN status = 1 THEN 'Tersedia'
+                ELSE 'Tidak Tersedia'
+             END AS Status,
+             CASE 
+                WHEN `show` = 1 THEN 'Ya'
+                ELSE 'Tidak'
+             END AS Tampil 
+             FROM car WHERE status = 1";
+
+            DataTable dt = new DataTable();
+
+            using (MySqlConnection connection = new MySqlConnection(connStr))
+            {
+                using (MySqlCommand command = new MySqlCommand(query, connection))
+                {
+                    try
+                    {
+                        connection.Open();
+                        using (MySqlDataAdapter adapter = new MySqlDataAdapter(command))
+                        {
+                            adapter.Fill(dt);
+                        }
+                    }
+                    catch (MySqlException ex)
+                    {
+                        MessageBox.Show($"Gagal mengambil data mobil: {ex.Message}", "Kesalahan DB", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            return dt;
+        }
+
+
+        public DataTable GetRentalData()
+        {
+            string query = @"
+                        SELECT 
+                            u.id_user AS NIK,
+                            u.nama AS NAMA,
+                            u.alamat AS ALAMAT,
+                            u.no_hp AS NO_HP,
+                            c.id AS ID_MOBIL,
+                            c.nopol AS NOPOL,
+                            c.merk AS MEREK,
+                            c.type AS TIPE,
+                            c.year AS TAHUN,
+                            c.price AS HARGA,
+                            c.status AS STATUS,
+                            r.rental_date AS TANGGAL_PINJAM,
+                            r.rental_return AS TANGGAL_KEMBALI
+                        FROM rental r
+                        JOIN user u ON u.id_user = r.user_id
+                        JOIN car c ON c.id = r.car_id
+                        WHERE c.status = 0;
+                    ";
+
+            DataTable dt = new DataTable();
+
+            using (MySqlConnection connection = new MySqlConnection(connStr))
+            {
+                using (MySqlCommand command = new MySqlCommand(query, connection))
+                {
+                    try
+                    {
+                        connection.Open();
+                        using (MySqlDataAdapter adapter = new MySqlDataAdapter(command))
+                        {
+                            adapter.Fill(dt);
+                        }
+                    }
+                    catch (MySqlException ex)
+                    {
+                        MessageBox.Show($"Gagal mengambil data rental: {ex.Message}", "Kesalahan DB", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            return dt;
+        }
+
+        public DataTable GetRentalingData()
+        {
+            string query = @"
+                        SELECT 
+                            u.id_user AS NIK,
+                            u.nama AS NAMA,
+                            u.alamat AS ALAMAT,
+                            u.no_hp AS NO_HP,
+                            c.id AS ID_MOBIL,
+                            c.nopol AS NOPOL,
+                            c.merk AS MEREK,
+                            c.type AS TIPE,
+                            c.year AS TAHUN,
+                            c.price AS HARGA,
+                            c.status AS STATUS,
+                            r.id AS RENTAL_ID,
+                            r.rental_date AS TANGGAL_PINJAM,
+                            r.rental_return AS TANGGAL_KEMBALI
+                        FROM rental r
+                        JOIN user u ON u.id_user = r.user_id
+                        JOIN car c ON c.id = r.car_id
+                        WHERE c.status = 0;
+                    ";
+
+            DataTable dt = new DataTable();
+
+            using (MySqlConnection connection = new MySqlConnection(connStr))
+            {
+                using (MySqlCommand command = new MySqlCommand(query, connection))
+                {
+                    try
+                    {
+                        connection.Open();
+                        using (MySqlDataAdapter adapter = new MySqlDataAdapter(command))
+                        {
+                            adapter.Fill(dt);
+                        }
+                    }
+                    catch (MySqlException ex)
+                    {
+                        MessageBox.Show($"Gagal mengambil data rental: {ex.Message}", "Kesalahan DB", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            return dt;
+        }
+
+        public bool CreateRentalData(string user_id, string car_id, DateTime rental_date, DateTime rental_return, int statusInt)
+        {
+            string insertQuery = @"INSERT INTO rental (user_id, car_id, rental_date, rental_return) 
+                           VALUES (@user_id, @car_id, @rental_date, @rental_return)";
+
+            string updateQuery = @"UPDATE car SET status = @status WHERE id = @car_id";
+
+            using (MySqlConnection connection = new MySqlConnection(connStr))
+            {
+                connection.Open();
+                MySqlTransaction transaction = connection.BeginTransaction();
+
+                try
+                {
+                    using (MySqlCommand cmdInsert = new MySqlCommand(insertQuery, connection, transaction))
+                    {
+                        cmdInsert.Parameters.AddWithValue("@user_id", user_id);
+                        cmdInsert.Parameters.AddWithValue("@car_id", car_id);
+                        cmdInsert.Parameters.AddWithValue("@rental_date", rental_date);
+                        cmdInsert.Parameters.AddWithValue("@rental_return", rental_return);
+                        cmdInsert.ExecuteNonQuery();
+                    }
+                    using (MySqlCommand cmdUpdate = new MySqlCommand(updateQuery, connection, transaction))
+                    {
+                        cmdUpdate.Parameters.AddWithValue("@status", statusInt);
+                        cmdUpdate.Parameters.AddWithValue("@car_id", car_id);
+                        cmdUpdate.ExecuteNonQuery();
+                    }
+
+                    transaction.Commit();
+                    return true;
+                }
+                catch (MySqlException ex)
+                {
+                    transaction.Rollback();
+                    MessageBox.Show(
+                        $"Gagal menyimpan data ke database. Error: {ex.Message}",
+                        "Kesalahan Database",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error
+                    );
+                    return false;
+                }
+            }
+        }
+
+        public bool ReturnCar(int carID, DateTime tglPinjam, DateTime tglKembali, DateTime tglSekarang, decimal denda)
+        {
+            string updateRentalQuery = @"
+                UPDATE rental 
+                SET 
+                    return_date = @tglSekarang,
+                    denda = @denda
+                WHERE car_id = @car_id
+                  AND rental_date = @tglPinjam
+                  AND rental_return = @tglKembali
+                  AND return_date IS NULL
+            ";
+
+            string updateCarQuery = @"UPDATE car SET status = 1 WHERE id = @car_id";
+
+            using (MySqlConnection connection = new MySqlConnection(connStr))
+            {
+                connection.Open();
+                MySqlTransaction transaction = connection.BeginTransaction();
+
+                try
+                {
+                    using (MySqlCommand cmd1 = new MySqlCommand(updateRentalQuery, connection, transaction))
+                    {
+                        cmd1.Parameters.AddWithValue("@car_id", carID);
+                        cmd1.Parameters.AddWithValue("@tglSekarang", tglSekarang);
+                        cmd1.Parameters.AddWithValue("@denda", denda);
+                        cmd1.Parameters.AddWithValue("@tglPinjam", tglPinjam);
+                        cmd1.Parameters.AddWithValue("@tglKembali", tglKembali);
+
+                        cmd1.ExecuteNonQuery();
+                    }
+
+                    using (MySqlCommand cmd2 = new MySqlCommand(updateCarQuery, connection, transaction))
+                    {
+                        cmd2.Parameters.AddWithValue("@car_id", carID);
+                        cmd2.ExecuteNonQuery();
+                    }
+
+                    transaction.Commit();
+                    return true;
+                }
+                catch (MySqlException ex)
+                {
+                    transaction.Rollback();
+                    MessageBox.Show(
+                        $"Gagal memperbarui data di database.\nError: {ex.Message}",
+                        "Kesalahan Database",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error
+                    );
+                    return false;
+                }
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
         private void LoadUserControl(UserControl newControl)
         {
             panel2.Controls.Clear();
@@ -603,7 +850,7 @@ namespace RentalMobil_Kel2
                 case "Rental":
                     if (IsAdmin())
                     {
-                        controlToLoad = new RentalControl();
+                        controlToLoad = new RentalControl(this);
                     }
                     else
                     {
@@ -612,7 +859,7 @@ namespace RentalMobil_Kel2
 
                         break;
                 case "ReturnControl":
-                    controlToLoad = new ReturnControl();
+                    controlToLoad = new ReturnControl(this);
                     break;
                 case "AddCar":
                     if (IsAdmin())
