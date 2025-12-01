@@ -28,8 +28,8 @@ namespace RentalMobil_Kel2
                 AddUserNav.Visible = false;
                 RentalNav.Visible = true;
                 ReturnNav.Visible = false;
-                ExitNav.Visible = false;
-                HomeNav.Visible = false;
+                ExitNav.Visible = true;
+                HomeNav.Visible = true;
 
 
                 AuthNav.Text = "Logout";

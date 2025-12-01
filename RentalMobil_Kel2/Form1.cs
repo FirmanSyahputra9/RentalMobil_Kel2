@@ -854,7 +854,7 @@ namespace RentalMobil_Kel2
                     }
                     else
                     {
-                        controlToLoad = new RentalUserControl();
+                        controlToLoad = new RentalUserControl(this);
                     }
 
                         break;

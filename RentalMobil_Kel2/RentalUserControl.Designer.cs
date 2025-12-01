@@ -28,18 +28,31 @@
         /// </summary>
         private void InitializeComponent()
         {
+            flowLayoutPanel1 = new FlowLayoutPanel();
             SuspendLayout();
+            // 
+            // flowLayoutPanel1
+            // 
+            flowLayoutPanel1.AutoScroll = true;
+            flowLayoutPanel1.Dock = DockStyle.Fill;
+            flowLayoutPanel1.Location = new Point(0, 0);
+            flowLayoutPanel1.Name = "flowLayoutPanel1";
+            flowLayoutPanel1.Size = new Size(890, 768);
+            flowLayoutPanel1.TabIndex = 0;
             // 
             // RentalUserControl
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Silver;
+            Controls.Add(flowLayoutPanel1);
             Name = "RentalUserControl";
             Size = new Size(890, 768);
             ResumeLayout(false);
         }
 
         #endregion
+
+        private FlowLayoutPanel flowLayoutPanel1;
     }
 }
