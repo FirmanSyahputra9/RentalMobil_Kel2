@@ -27,7 +27,7 @@ namespace RentalMobil_Kel2
         private void btnRegister_Click(object sender, EventArgs e)
         {
 
-            string id_user, nama, username, password, kon_password, type;
+            string id_user, nama, username, password, kon_password, type,alamat, no_hp;
             bool status;
 
             id_user = this.textBox1.Text;
@@ -35,11 +35,13 @@ namespace RentalMobil_Kel2
             username = this.textBox3.Text;
             password = this.textBox4.Text;
             kon_password = this.textBox5.Text;
+            alamat = this.textBox6.Text;
+            no_hp = this.textBox7.Text;
             status = false;
             type = "user";
 
 
-            if (string.IsNullOrWhiteSpace(id_user) || string.IsNullOrWhiteSpace(nama) || string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password) || string.IsNullOrWhiteSpace(kon_password))
+            if (string.IsNullOrWhiteSpace(id_user) || string.IsNullOrWhiteSpace(nama) || string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password) || string.IsNullOrWhiteSpace(kon_password) || string.IsNullOrWhiteSpace(alamat) || string.IsNullOrWhiteSpace(no_hp))
             {
                 MessageBox.Show("Semua kolom data mobil harus diisi.", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -58,7 +60,7 @@ namespace RentalMobil_Kel2
                 return;
             }
 
-            bool success = parentForm.Register(id_user, nama, username, password, type, status);
+            bool success = parentForm.Register(id_user, nama, username, password, type, status, alamat, no_hp);
 
             if (success)
             {

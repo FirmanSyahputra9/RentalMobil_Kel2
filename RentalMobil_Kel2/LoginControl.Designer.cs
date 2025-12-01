@@ -154,7 +154,7 @@
             Controls.Add(label2);
             Controls.Add(groupBox1);
             Name = "LoginControl";
-            Size = new Size(450, 550);
+            Size = new Size(450, 689);
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             ResumeLayout(false);

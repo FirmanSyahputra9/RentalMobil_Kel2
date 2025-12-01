@@ -34,19 +34,28 @@
             label5 = new Label();
             label6 = new Label();
             label7 = new Label();
-            button1 = new Button();
-            button2 = new Button();
-            button3 = new Button();
-            button4 = new Button();
+            btnSave = new Button();
+            btnEdit = new Button();
+            btnDel = new Button();
+            btnRefresh = new Button();
             button5 = new Button();
             textBox1 = new TextBox();
             textBox2 = new TextBox();
             textBox3 = new TextBox();
             textBox4 = new TextBox();
-            textBox5 = new TextBox();
-            textBox6 = new TextBox();
             groupBox1 = new GroupBox();
+            textBox7 = new TextBox();
+            label1 = new Label();
+            textBox6 = new TextBox();
+            label8 = new Label();
+            comboBox1 = new ComboBox();
+            button6 = new Button();
+            textBox5 = new TextBox();
+            addCarControl1 = new AddCarControl();
             dataGridView1 = new DataGridView();
+            textBox8 = new TextBox();
+            label9 = new Label();
+            groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -99,51 +108,55 @@
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(280, 298);
+            label7.Location = new Point(280, 432);
             label7.Name = "label7";
             label7.Size = new Size(40, 20);
             label7.TabIndex = 6;
             label7.Text = "Type";
             // 
-            // button1
+            // btnSave
             // 
-            button1.Location = new Point(222, 391);
-            button1.Name = "button1";
-            button1.Size = new Size(94, 29);
-            button1.TabIndex = 7;
-            button1.Text = "Add";
-            button1.UseVisualStyleBackColor = true;
+            btnSave.Location = new Point(222, 507);
+            btnSave.Name = "btnSave";
+            btnSave.Size = new Size(94, 29);
+            btnSave.TabIndex = 7;
+            btnSave.Text = "Add";
+            btnSave.UseVisualStyleBackColor = true;
+            btnSave.Click += btnSave_Click;
             // 
-            // button2
+            // btnEdit
             // 
-            button2.Location = new Point(342, 391);
-            button2.Name = "button2";
-            button2.Size = new Size(94, 29);
-            button2.TabIndex = 8;
-            button2.Text = "Edit";
-            button2.UseVisualStyleBackColor = true;
+            btnEdit.Location = new Point(342, 507);
+            btnEdit.Name = "btnEdit";
+            btnEdit.Size = new Size(94, 29);
+            btnEdit.TabIndex = 8;
+            btnEdit.Text = "Edit";
+            btnEdit.UseVisualStyleBackColor = true;
+            btnEdit.Click += btnEdit_Click;
             // 
-            // button3
+            // btnDel
             // 
-            button3.Location = new Point(467, 391);
-            button3.Name = "button3";
-            button3.Size = new Size(94, 29);
-            button3.TabIndex = 9;
-            button3.Text = "Delete";
-            button3.UseVisualStyleBackColor = true;
+            btnDel.Location = new Point(467, 507);
+            btnDel.Name = "btnDel";
+            btnDel.Size = new Size(94, 29);
+            btnDel.TabIndex = 9;
+            btnDel.Text = "Delete";
+            btnDel.UseVisualStyleBackColor = true;
+            btnDel.Click += btnDel_Click;
             // 
-            // button4
+            // btnRefresh
             // 
-            button4.Location = new Point(595, 391);
-            button4.Name = "button4";
-            button4.Size = new Size(94, 29);
-            button4.TabIndex = 10;
-            button4.Text = "Refresh";
-            button4.UseVisualStyleBackColor = true;
+            btnRefresh.Location = new Point(595, 507);
+            btnRefresh.Name = "btnRefresh";
+            btnRefresh.Size = new Size(94, 29);
+            btnRefresh.TabIndex = 10;
+            btnRefresh.Text = "Refresh";
+            btnRefresh.UseVisualStyleBackColor = true;
+            btnRefresh.Click += btnRefresh_Click_1;
             // 
             // button5
             // 
-            button5.Location = new Point(702, 478);
+            button5.Location = new Point(702, 542);
             button5.Name = "button5";
             button5.Size = new Size(94, 29);
             button5.TabIndex = 11;
@@ -152,7 +165,7 @@
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(119, 478);
+            textBox1.Location = new Point(119, 542);
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(562, 27);
             textBox1.TabIndex = 12;
@@ -178,55 +191,134 @@
             textBox4.Size = new Size(236, 27);
             textBox4.TabIndex = 15;
             // 
-            // textBox5
-            // 
-            textBox5.Location = new Point(398, 256);
-            textBox5.Name = "textBox5";
-            textBox5.Size = new Size(236, 27);
-            textBox5.TabIndex = 16;
-            // 
-            // textBox6
-            // 
-            textBox6.Location = new Point(398, 295);
-            textBox6.Name = "textBox6";
-            textBox6.Size = new Size(236, 27);
-            textBox6.TabIndex = 17;
-            // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(textBox8);
+            groupBox1.Controls.Add(label9);
+            groupBox1.Controls.Add(textBox7);
+            groupBox1.Controls.Add(label1);
+            groupBox1.Controls.Add(textBox6);
+            groupBox1.Controls.Add(label8);
+            groupBox1.Controls.Add(comboBox1);
+            groupBox1.Controls.Add(button6);
+            groupBox1.Controls.Add(textBox5);
+            groupBox1.Controls.Add(addCarControl1);
             groupBox1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             groupBox1.Location = new Point(154, 100);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(642, 263);
+            groupBox1.Size = new Size(642, 391);
             groupBox1.TabIndex = 18;
             groupBox1.TabStop = false;
             groupBox1.Text = "Data User";
             // 
+            // textBox7
+            // 
+            textBox7.Font = new Font("Segoe UI", 9F);
+            textBox7.Location = new Point(244, 282);
+            textBox7.Name = "textBox7";
+            textBox7.Size = new Size(236, 27);
+            textBox7.TabIndex = 21;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 9F);
+            label1.Location = new Point(126, 289);
+            label1.Name = "label1";
+            label1.Size = new Size(55, 20);
+            label1.TabIndex = 22;
+            label1.Text = "No. HP";
+            // 
+            // textBox6
+            // 
+            textBox6.Font = new Font("Segoe UI", 9F);
+            textBox6.Location = new Point(244, 243);
+            textBox6.Name = "textBox6";
+            textBox6.Size = new Size(236, 27);
+            textBox6.TabIndex = 20;
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Font = new Font("Segoe UI", 9F);
+            label8.Location = new Point(126, 246);
+            label8.Name = "label8";
+            label8.Size = new Size(57, 20);
+            label8.TabIndex = 20;
+            label8.Text = "Alamat";
+            // 
+            // comboBox1
+            // 
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Location = new Point(244, 332);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(236, 28);
+            comboBox1.TabIndex = 3;
+            // 
+            // button6
+            // 
+            button6.Location = new Point(445, 159);
+            button6.Name = "button6";
+            button6.Size = new Size(28, 21);
+            button6.TabIndex = 2;
+            button6.UseVisualStyleBackColor = true;
+            button6.Click += button6_Click;
+            // 
+            // textBox5
+            // 
+            textBox5.Location = new Point(244, 156);
+            textBox5.Name = "textBox5";
+            textBox5.Size = new Size(236, 27);
+            textBox5.TabIndex = 1;
+            // 
+            // addCarControl1
+            // 
+            addCarControl1.Location = new Point(785, 133);
+            addCarControl1.Name = "addCarControl1";
+            addCarControl1.Size = new Size(1407, 960);
+            addCarControl1.TabIndex = 0;
+            // 
             // dataGridView1
             // 
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(22, 530);
+            dataGridView1.Location = new Point(22, 575);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(843, 224);
+            dataGridView1.Size = new Size(843, 179);
             dataGridView1.TabIndex = 19;
+            // 
+            // textBox8
+            // 
+            textBox8.Font = new Font("Segoe UI", 9F);
+            textBox8.Location = new Point(244, 199);
+            textBox8.Name = "textBox8";
+            textBox8.Size = new Size(236, 27);
+            textBox8.TabIndex = 23;
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Font = new Font("Segoe UI", 9F);
+            label9.Location = new Point(126, 202);
+            label9.Name = "label9";
+            label9.Size = new Size(49, 20);
+            label9.TabIndex = 24;
+            label9.Text = "Status";
             // 
             // AddUserControl
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(dataGridView1);
-            Controls.Add(textBox6);
-            Controls.Add(textBox5);
             Controls.Add(textBox4);
             Controls.Add(textBox3);
             Controls.Add(textBox2);
             Controls.Add(textBox1);
             Controls.Add(button5);
-            Controls.Add(button4);
-            Controls.Add(button3);
-            Controls.Add(button2);
-            Controls.Add(button1);
+            Controls.Add(btnRefresh);
+            Controls.Add(btnDel);
+            Controls.Add(btnEdit);
+            Controls.Add(btnSave);
             Controls.Add(label7);
             Controls.Add(label6);
             Controls.Add(label5);
@@ -236,6 +328,8 @@
             Controls.Add(groupBox1);
             Name = "AddUserControl";
             Size = new Size(890, 768);
+            groupBox1.ResumeLayout(false);
+            groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -248,18 +342,26 @@
         private Label label5;
         private Label label6;
         private Label label7;
-        private Button button1;
-        private Button button2;
-        private Button button3;
-        private Button button4;
+        private Button btnSave;
+        private Button btnEdit;
+        private Button btnDel;
+        private Button btnRefresh;
         private Button button5;
         private TextBox textBox1;
         private TextBox textBox2;
         private TextBox textBox3;
         private TextBox textBox4;
-        private TextBox textBox5;
-        private TextBox textBox6;
         private GroupBox groupBox1;
         private DataGridView dataGridView1;
+        private AddCarControl addCarControl1;
+        private Button button6;
+        private TextBox textBox5;
+        private ComboBox comboBox1;
+        private Label label8;
+        private TextBox textBox6;
+        private TextBox textBox7;
+        private Label label1;
+        private TextBox textBox8;
+        private Label label9;
     }
 }

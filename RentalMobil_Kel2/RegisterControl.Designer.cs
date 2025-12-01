@@ -35,6 +35,8 @@
             label3 = new Label();
             label4 = new Label();
             groupBox1 = new GroupBox();
+            textBox6 = new TextBox();
+            label9 = new Label();
             button2 = new Button();
             button1 = new Button();
             label7 = new Label();
@@ -45,6 +47,8 @@
             label1 = new Label();
             textBox4 = new TextBox();
             textBox3 = new TextBox();
+            textBox7 = new TextBox();
+            label10 = new Label();
             groupBox1.SuspendLayout();
             SuspendLayout();
             // 
@@ -60,7 +64,7 @@
             // 
             // btnRegister
             // 
-            btnRegister.Location = new Point(273, 402);
+            btnRegister.Location = new Point(273, 496);
             btnRegister.Name = "btnRegister";
             btnRegister.Size = new Size(94, 29);
             btnRegister.TabIndex = 13;
@@ -102,6 +106,10 @@
             // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(textBox7);
+            groupBox1.Controls.Add(label10);
+            groupBox1.Controls.Add(textBox6);
+            groupBox1.Controls.Add(label9);
             groupBox1.Controls.Add(button2);
             groupBox1.Controls.Add(button1);
             groupBox1.Controls.Add(label7);
@@ -116,13 +124,29 @@
             groupBox1.Controls.Add(label2);
             groupBox1.Location = new Point(31, 35);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(389, 481);
+            groupBox1.Size = new Size(389, 618);
             groupBox1.TabIndex = 14;
             groupBox1.TabStop = false;
             // 
+            // textBox6
+            // 
+            textBox6.Location = new Point(141, 291);
+            textBox6.Name = "textBox6";
+            textBox6.Size = new Size(226, 27);
+            textBox6.TabIndex = 24;
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Location = new Point(22, 298);
+            label9.Name = "label9";
+            label9.Size = new Size(57, 20);
+            label9.TabIndex = 23;
+            label9.Text = "Alamat";
+            // 
             // button2
             // 
-            button2.Location = new Point(336, 342);
+            button2.Location = new Point(336, 441);
             button2.Name = "button2";
             button2.Size = new Size(28, 21);
             button2.TabIndex = 22;
@@ -131,7 +155,7 @@
             // 
             // button1
             // 
-            button1.Location = new Point(336, 296);
+            button1.Location = new Point(336, 395);
             button1.Name = "button1";
             button1.Size = new Size(28, 21);
             button1.TabIndex = 21;
@@ -143,7 +167,7 @@
             label7.AutoSize = true;
             label7.Font = new Font("Segoe UI", 9F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point, 0);
             label7.ForeColor = Color.RoyalBlue;
-            label7.Location = new Point(243, 373);
+            label7.Location = new Point(243, 467);
             label7.Name = "label7";
             label7.Size = new Size(121, 20);
             label7.TabIndex = 16;
@@ -152,7 +176,7 @@
             // 
             // textBox5
             // 
-            textBox5.Location = new Point(141, 339);
+            textBox5.Location = new Point(141, 438);
             textBox5.Name = "textBox5";
             textBox5.Size = new Size(226, 27);
             textBox5.TabIndex = 20;
@@ -160,7 +184,7 @@
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(112, 373);
+            label8.Location = new Point(112, 467);
             label8.Name = "label8";
             label8.Size = new Size(136, 20);
             label8.TabIndex = 15;
@@ -169,7 +193,7 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(22, 346);
+            label6.Location = new Point(22, 445);
             label6.Name = "label6";
             label6.Size = new Size(113, 20);
             label6.TabIndex = 19;
@@ -178,7 +202,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(22, 296);
+            label5.Location = new Point(22, 395);
             label5.Name = "label5";
             label5.Size = new Size(70, 20);
             label5.TabIndex = 18;
@@ -195,7 +219,7 @@
             // 
             // textBox4
             // 
-            textBox4.Location = new Point(141, 293);
+            textBox4.Location = new Point(141, 392);
             textBox4.Name = "textBox4";
             textBox4.Size = new Size(226, 27);
             textBox4.TabIndex = 16;
@@ -207,6 +231,22 @@
             textBox3.Size = new Size(226, 27);
             textBox3.TabIndex = 15;
             // 
+            // textBox7
+            // 
+            textBox7.Location = new Point(141, 344);
+            textBox7.Name = "textBox7";
+            textBox7.Size = new Size(226, 27);
+            textBox7.TabIndex = 26;
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Location = new Point(22, 351);
+            label10.Name = "label10";
+            label10.Size = new Size(55, 20);
+            label10.TabIndex = 25;
+            label10.Text = "No. HP";
+            // 
             // RegisterControl
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -217,7 +257,7 @@
             Controls.Add(label4);
             Controls.Add(groupBox1);
             Name = "RegisterControl";
-            Size = new Size(450, 550);
+            Size = new Size(450, 689);
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             ResumeLayout(false);
@@ -242,5 +282,9 @@
         private Label label8;
         private Button button2;
         private Button button1;
+        private TextBox textBox6;
+        private Label label9;
+        private TextBox textBox7;
+        private Label label10;
     }
 }

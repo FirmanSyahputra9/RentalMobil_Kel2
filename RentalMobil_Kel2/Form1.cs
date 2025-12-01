@@ -51,11 +51,11 @@ namespace RentalMobil_Kel2
             }
         }
 
-        public bool Register(string id_user, string nama, string username, string password, string type, bool status)
+        public bool Register(string id_user, string nama, string username, string password, string type, bool status, string alamat, string no_hp)
         {
             int dbStatus = status ? 1 : 0;
 
-            string query = "INSERT INTO user (id_user, nama, username, password, type, status) VALUES (@id_user, @name, @username, @password, @type, @status)";
+            string query = "INSERT INTO user (id_user, nama, username, password, type, status, alamat, no_hp) VALUES (@id_user, @name, @username, @password, @type, @status, @alamat, @no_hp)";
 
             using (MySqlConnection connection = new MySqlConnection(connStr))
             {
@@ -67,6 +67,40 @@ namespace RentalMobil_Kel2
                     command.Parameters.AddWithValue("@password", password);
                     command.Parameters.AddWithValue("@type", type);
                     command.Parameters.AddWithValue("@status", dbStatus);
+                    command.Parameters.AddWithValue("@alamat", alamat);
+                    command.Parameters.AddWithValue("@no_hp", no_hp);
+                    try
+                    {
+                        connection.Open();
+                        command.ExecuteNonQuery();
+                        return true;
+                    }
+                    catch (MySqlException ex)
+                    {
+                        MessageBox.Show($"Gagal menyimpan data ke database. Error: {ex.Message}", "Kesalahan Database", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return false;
+                    }
+                }
+            }
+        }
+
+        public bool AddUser(string id_user, string nama, string username, string password, string type, bool status, string alamat)
+        {
+            int dbStatus = status ? 1 : 0;
+
+            string query = "INSERT INTO user (id_user, nama, username, password, type, status, alamat) VALUES (@id_user, @name, @username, @password, @type, @status, @alamat)";
+
+            using (MySqlConnection connection = new MySqlConnection(connStr))
+            {
+                using (MySqlCommand command = new MySqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@id_user", id_user);
+                    command.Parameters.AddWithValue("@name", nama);
+                    command.Parameters.AddWithValue("@username", username);
+                    command.Parameters.AddWithValue("@password", password);
+                    command.Parameters.AddWithValue("@type", type);
+                    command.Parameters.AddWithValue("@status", dbStatus);
+                    command.Parameters.AddWithValue("@alamat", alamat);
                     try
                     {
                         connection.Open();
@@ -143,6 +177,8 @@ namespace RentalMobil_Kel2
             }
         }
 
+
+        // UserControl
         public DataTable GetCarData()
         {
             string query = @"SELECT code AS KODE, merk AS MEREK, type as TIPE, year AS TAHUN, nopol AS NOPOL, price AS HARGA, 
@@ -179,6 +215,46 @@ namespace RentalMobil_Kel2
             return dt;
         }
 
+
+        public byte[] GetCarImageByCode(string code)
+        {
+            string query = "SELECT image_blob FROM car WHERE code = @code";
+            byte[] imageBytes = null;
+
+            using (MySqlConnection connection = new MySqlConnection(connStr))
+            {
+                using (MySqlCommand command = new MySqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@code", code);
+                    try
+                    {
+                        connection.Open();
+                        object result = command.ExecuteScalar();
+
+                        if (result != null && result != DBNull.Value)
+                        {
+                            if (result is byte[] bytes)
+                            {
+                                imageBytes = bytes;
+                            }
+                            else
+                            {
+                                MessageBox.Show("Tipe data gambar yang diambil tidak sesuai.", "Kesalahan Konversi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine($"Kode {code} tidak memiliki gambar tersimpan.");
+                        }
+                    }
+                    catch (MySqlException ex)
+                    {
+                        MessageBox.Show($"Gagal mengambil gambar mobil dari DB: {ex.Message}", "Kesalahan DB", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            return imageBytes;
+        }
         public int GetCarCountByMerk(string merk)
         {
             string query = "SELECT COUNT(*) FROM car WHERE merk = @merk";
@@ -203,11 +279,11 @@ namespace RentalMobil_Kel2
             return count;
         }
 
-        public bool SaveCarData(string code, string merk, string type, int tahun, string nopol, int harga, bool status)
+        public bool SaveCarData(string code, string merk, string type, int tahun, string nopol, int harga, bool status, byte[] imageBlob)
         {
             int dbStatus = status ? 1 : 0;
 
-            string query = "INSERT INTO car (code, merk, type, year, nopol, price, status) VALUES (@code, @merk, @tipe, @tahun, @nopol, @harga, @status)";
+            string query = "INSERT INTO car (code, merk, type, year, nopol, price, status, image_blob) VALUES (@code, @merk, @tipe, @tahun, @nopol, @harga, @status, @imageBlob)";
 
             using (MySqlConnection connection = new MySqlConnection(connStr))
             {
@@ -220,6 +296,15 @@ namespace RentalMobil_Kel2
                     command.Parameters.AddWithValue("@nopol", nopol);
                     command.Parameters.AddWithValue("@harga", harga);
                     command.Parameters.AddWithValue("@status", dbStatus);
+                    if (imageBlob != null)
+                    {
+                        command.Parameters.Add("@imageBlob", MySqlDbType.LongBlob, imageBlob.Length).Value = imageBlob;
+                    }
+                    else
+                    {
+                        command.Parameters.Add("@imageBlob", MySqlDbType.LongBlob).Value = DBNull.Value;
+                    }
+
                     try
                     {
                         connection.Open();
@@ -234,54 +319,84 @@ namespace RentalMobil_Kel2
                 }
             }
         }
-
-        // Tambahkan ini ke dalam class Form1
-        public bool UpdateCarData(string code, string merk, string type, int tahun, string nopol, int harga, bool status)
+        public bool UpdateCarData(string code, string merk, string type, int tahun, string nopol, int harga, bool status, bool showTersedia, byte[] imageBlob)
         {
             int dbStatus = status ? 1 : 0;
-            // Perintah UPDATE menggunakan KODE sebagai kunci (WHERE code = @code)
+            int dbShowIndex = showTersedia? 1 : 0;
             string query = @"UPDATE car SET 
                         merk = @merk, 
-                        type = @tipe, 
+                        type = @type, 
                         year = @tahun, 
                         nopol = @nopol, 
                         price = @harga, 
-                        status = @status 
-                     WHERE code = @code";
+                        status = @status,
+                        `show` = @showIndex,
+                        image_blob = @imageBlob
+                      WHERE code = @code";
 
             using (MySqlConnection connection = new MySqlConnection(connStr))
             {
                 using (MySqlCommand command = new MySqlCommand(query, connection))
                 {
-                    // Semua parameter dimasukkan, termasuk @code di WHERE
                     command.Parameters.AddWithValue("@merk", merk);
-                    command.Parameters.AddWithValue("@tipe", type);
+                    command.Parameters.AddWithValue("@type", type);
                     command.Parameters.AddWithValue("@tahun", tahun);
                     command.Parameters.AddWithValue("@nopol", nopol);
                     command.Parameters.AddWithValue("@harga", harga);
                     command.Parameters.AddWithValue("@status", dbStatus);
+                    command.Parameters.AddWithValue("@showIndex", dbShowIndex   );
+
+
+                    if (imageBlob != null)
+                    {
+                        command.Parameters.Add("@imageBlob", MySqlDbType.LongBlob, imageBlob.Length).Value = imageBlob;
+                    }
+                    else
+                    {
+  
+                        command.Parameters.Add("@imageBlob", MySqlDbType.LongBlob).Value = DBNull.Value;
+                    }
+
+           
                     command.Parameters.AddWithValue("@code", code);
 
                     try
                     {
                         connection.Open();
+
+                        Console.WriteLine("=== DEBUG UPDATE ===");
+                        Console.WriteLine("QUERY:\n" + query);
+
+                        foreach (MySqlParameter p in command.Parameters)
+                        {
+                            Console.WriteLine($"{p.ParameterName} = {p.Value}");
+                        }
+
                         int rowsAffected = command.ExecuteNonQuery();
+
+                        Console.WriteLine("Rows Affected: " + rowsAffected);
+
                         return rowsAffected > 0;
                     }
                     catch (MySqlException ex)
                     {
-                        MessageBox.Show($"Gagal memperbarui data mobil. Error: {ex.Message}", "Kesalahan Database", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show(
+                            $"ERROR MYSQL:\n{ex.Message}\n\nKode Error: {ex.Number}",
+                            "Kesalahan Database",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error
+                        );
                         return false;
                     }
+
+
                 }
             }
         }
 
-        // Di dalam class Form1
 
         public bool UpdateCarStatus(string code, bool status)
         {
-            // Ubah status boolean menjadi integer 1 (true = Tersedia) atau 0 (false = Tidak Tersedia) untuk DB
             int dbStatus = status ? 1 : 0;
 
             string query = "UPDATE car SET status = @status WHERE code = @code";
@@ -300,12 +415,14 @@ namespace RentalMobil_Kel2
                     }
                     catch (MySqlException ex)
                     {
-                        MessageBox.Show($"Gagal memperbarui status mobil. Error: {ex.Message}", "Kesalahan Database", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return false;
+
+                     MessageBox.Show($"Gagal memperbarui data mobil. Error: {ex.Message} \n\n SQL: {query}", "Kesalahan Database", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                     return false;
                     }
                 }
             }
         }
+
 
         public bool UpdateCarshow(string code, bool show)
         {
@@ -333,12 +450,90 @@ namespace RentalMobil_Kel2
         }
 
 
+        // UserControl
+        public DataTable GetUserData()
+        {
+            string query = @"SELECT id_user AS NIK, nama AS NAMA, username AS USERNAME, password AS PASSWORD,type AS ROLE, alamat AS ALAMAT, no_hp AS 'NO HP', 
+             CASE 
+                WHEN status = 1 THEN 'Aktif'
+                ELSE 'Belum Aktif'
+             END AS STATUS
+             FROM user";
+
+            DataTable dt = new DataTable();
+
+            using (MySqlConnection connection = new MySqlConnection(connStr))
+            {
+                using (MySqlCommand command = new MySqlCommand(query, connection))
+                {
+                    try
+                    {
+                        connection.Open();
+                        using (MySqlDataAdapter adapter = new MySqlDataAdapter(command))
+                        {
+                            adapter.Fill(dt);
+                        }
+                    }
+                    catch (MySqlException ex)
+                    {
+                        MessageBox.Show($"Gagal mengambil data user: {ex.Message}", "Kesalahan DB", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            return dt;
+        }
+
+
+        public bool SaveUserData(string code, string merk, string type, int tahun, string nopol, int harga, bool status, byte[] imageBlob)
+        {
+            int dbStatus = status ? 1 : 0;
+
+            string query = "INSERT INTO car (code, merk, type, year, nopol, price, status, image_blob) VALUES (@code, @merk, @tipe, @tahun, @nopol, @harga, @status, @imageBlob)";
+
+            using (MySqlConnection connection = new MySqlConnection(connStr))
+            {
+                using (MySqlCommand command = new MySqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@code", code);
+                    command.Parameters.AddWithValue("@merk", merk);
+                    command.Parameters.AddWithValue("@tipe", type);
+                    command.Parameters.AddWithValue("@tahun", tahun);
+                    command.Parameters.AddWithValue("@nopol", nopol);
+                    command.Parameters.AddWithValue("@harga", harga);
+                    command.Parameters.AddWithValue("@status", dbStatus);
+                    if (imageBlob != null)
+                    {
+                        command.Parameters.Add("@imageBlob", MySqlDbType.LongBlob, imageBlob.Length).Value = imageBlob;
+                    }
+                    else
+                    {
+                        command.Parameters.Add("@imageBlob", MySqlDbType.LongBlob).Value = DBNull.Value;
+                    }
+
+                    try
+                    {
+                        connection.Open();
+                        command.ExecuteNonQuery();
+                        return true;
+                    }
+                    catch (MySqlException ex)
+                    {
+                        MessageBox.Show($"Gagal menyimpan data ke database. Error: {ex.Message}", "Kesalahan Database", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return false;
+                    }
+                }
+            }
+        }
+
+
         private void LoadUserControl(UserControl newControl)
         {
             panel2.Controls.Clear();
             newControl.Dock = DockStyle.Fill;
             panel2.Controls.Add(newControl);
         }
+
+
 
         private void LoadSidebar()
         {
@@ -443,7 +638,7 @@ namespace RentalMobil_Kel2
                 case "AddUser":
                     if (IsAdmin())
                     {
-                        controlToLoad = new AddUserControl();
+                        controlToLoad = new AddUserControl(this);
                     }
                     else
                     {

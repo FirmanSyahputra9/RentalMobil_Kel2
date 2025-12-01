@@ -33,9 +33,9 @@
             // 
             // panel1
             // 
-            panel1.Location = new Point(223, 161);
+            panel1.Location = new Point(223, 40);
             panel1.Name = "panel1";
-            panel1.Size = new Size(450, 550);
+            panel1.Size = new Size(450, 689);
             panel1.TabIndex = 0;
             // 
             // AuthControl

@@ -30,6 +30,10 @@
         {
             label1 = new Label();
             groupBox1 = new GroupBox();
+            comboBox3 = new ComboBox();
+            label9 = new Label();
+            button1 = new Button();
+            pictureBox1 = new PictureBox();
             comboBox2 = new ComboBox();
             textBox5 = new TextBox();
             textBox4 = new TextBox();
@@ -44,14 +48,15 @@
             label4 = new Label();
             label3 = new Label();
             label2 = new Label();
-            btnAdd = new Button();
+            btnSave = new Button();
             btnStatus = new Button();
             btnRefresh = new Button();
             btnDel = new Button();
             textBox6 = new TextBox();
             dataGridView1 = new DataGridView();
-            btnSave = new Button();
+            btnEdit = new Button();
             groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -67,6 +72,10 @@
             // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(comboBox3);
+            groupBox1.Controls.Add(label9);
+            groupBox1.Controls.Add(button1);
+            groupBox1.Controls.Add(pictureBox1);
             groupBox1.Controls.Add(comboBox2);
             groupBox1.Controls.Add(textBox5);
             groupBox1.Controls.Add(textBox4);
@@ -86,6 +95,41 @@
             groupBox1.Size = new Size(835, 291);
             groupBox1.TabIndex = 1;
             groupBox1.TabStop = false;
+            // 
+            // comboBox3
+            // 
+            comboBox3.FormattingEnabled = true;
+            comboBox3.Location = new Point(333, 244);
+            comboBox3.Name = "comboBox3";
+            comboBox3.Size = new Size(121, 28);
+            comboBox3.TabIndex = 17;
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Location = new Point(278, 247);
+            label9.Name = "label9";
+            label9.Size = new Size(49, 20);
+            label9.TabIndex = 16;
+            label9.Text = "Status";
+            // 
+            // button1
+            // 
+            button1.Location = new Point(601, 247);
+            button1.Name = "button1";
+            button1.Size = new Size(110, 29);
+            button1.TabIndex = 15;
+            button1.Text = "Pilih Gambar";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Location = new Point(509, 39);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(289, 193);
+            pictureBox1.TabIndex = 14;
+            pictureBox1.TabStop = false;
             // 
             // comboBox2
             // 
@@ -108,7 +152,6 @@
             textBox4.Name = "textBox4";
             textBox4.Size = new Size(309, 27);
             textBox4.TabIndex = 11;
-            textBox4.TextChanged += textBox4_TextChanged;
             // 
             // comboBox1
             // 
@@ -117,7 +160,6 @@
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(121, 28);
             comboBox1.TabIndex = 10;
-            comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             // 
             // textBox3
             // 
@@ -132,7 +174,6 @@
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(309, 27);
             textBox2.TabIndex = 8;
-            textBox2.TextChanged += textBox2_TextChanged;
             // 
             // textBox1
             // 
@@ -204,15 +245,15 @@
             label2.TabIndex = 0;
             label2.Text = "Kode";
             // 
-            // btnAdd
+            // btnSave
             // 
-            btnAdd.Location = new Point(114, 357);
-            btnAdd.Name = "btnAdd";
-            btnAdd.Size = new Size(134, 81);
-            btnAdd.TabIndex = 2;
-            btnAdd.Text = "Tambah";
-            btnAdd.UseVisualStyleBackColor = true;
-            btnAdd.Click += btnAdd_Click_1;
+            btnSave.Location = new Point(114, 357);
+            btnSave.Name = "btnSave";
+            btnSave.Size = new Size(134, 81);
+            btnSave.TabIndex = 2;
+            btnSave.Text = "Simpan";
+            btnSave.UseVisualStyleBackColor = true;
+            btnSave.Click += btnSave_Click;
             // 
             // btnStatus
             // 
@@ -260,33 +301,34 @@
             dataGridView1.Size = new Size(835, 188);
             dataGridView1.TabIndex = 7;
             // 
-            // btnSave
+            // btnEdit
             // 
-            btnSave.Location = new Point(678, 357);
-            btnSave.Name = "btnSave";
-            btnSave.Size = new Size(134, 81);
-            btnSave.TabIndex = 8;
-            btnSave.Text = "Simpan";
-            btnSave.UseVisualStyleBackColor = true;
-            btnSave.Click += btnEdit_Click;
+            btnEdit.Location = new Point(678, 357);
+            btnEdit.Name = "btnEdit";
+            btnEdit.Size = new Size(134, 81);
+            btnEdit.TabIndex = 8;
+            btnEdit.Text = "Edit";
+            btnEdit.UseVisualStyleBackColor = true;
+            btnEdit.Click += btnEdit_Click;
             // 
             // AddCarControl
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(btnSave);
+            Controls.Add(btnEdit);
             Controls.Add(dataGridView1);
             Controls.Add(textBox6);
             Controls.Add(btnDel);
             Controls.Add(btnRefresh);
             Controls.Add(btnStatus);
-            Controls.Add(btnAdd);
+            Controls.Add(btnSave);
             Controls.Add(groupBox1);
             Controls.Add(label1);
             Name = "AddCarControl";
             Size = new Size(890, 768);
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -310,12 +352,16 @@
         private TextBox textBox3;
         private TextBox textBox2;
         private TextBox textBox1;
-        private Button btnAdd;
+        private Button btnSave;
         private Button btnStatus;
         private Button btnRefresh;
         private Button btnDel;
         private TextBox textBox6;
         private DataGridView dataGridView1;
-        private Button btnSave;
+        private Button btnEdit;
+        private PictureBox pictureBox1;
+        private Button button1;
+        private ComboBox comboBox3;
+        private Label label9;
     }
 }
