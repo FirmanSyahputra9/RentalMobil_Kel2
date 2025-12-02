@@ -52,7 +52,6 @@
             btnStatus = new Button();
             btnRefresh = new Button();
             btnDel = new Button();
-            textBox6 = new TextBox();
             dataGridView1 = new DataGridView();
             btnEdit = new Button();
             groupBox1.SuspendLayout();
@@ -285,13 +284,6 @@
             btnDel.UseVisualStyleBackColor = true;
             btnDel.Click += btnDel_Click;
             // 
-            // textBox6
-            // 
-            textBox6.Location = new Point(159, 459);
-            textBox6.Name = "textBox6";
-            textBox6.Size = new Size(611, 27);
-            textBox6.TabIndex = 6;
-            // 
             // dataGridView1
             // 
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -317,7 +309,6 @@
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(btnEdit);
             Controls.Add(dataGridView1);
-            Controls.Add(textBox6);
             Controls.Add(btnDel);
             Controls.Add(btnRefresh);
             Controls.Add(btnStatus);
@@ -356,7 +347,6 @@
         private Button btnStatus;
         private Button btnRefresh;
         private Button btnDel;
-        private TextBox textBox6;
         private DataGridView dataGridView1;
         private Button btnEdit;
         private PictureBox pictureBox1;

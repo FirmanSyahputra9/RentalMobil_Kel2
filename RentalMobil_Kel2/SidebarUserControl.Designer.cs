@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             groupBox1 = new GroupBox();
-            label1 = new Label();
             ExitNav = new Button();
             AddUserNav = new Button();
             AddCarNav = new Button();
@@ -45,7 +44,6 @@
             // groupBox1
             // 
             groupBox1.BackColor = Color.LightGray;
-            groupBox1.Controls.Add(label1);
             groupBox1.Controls.Add(ExitNav);
             groupBox1.Controls.Add(AddUserNav);
             groupBox1.Controls.Add(AddCarNav);
@@ -57,15 +55,6 @@
             groupBox1.Size = new Size(252, 633);
             groupBox1.TabIndex = 4;
             groupBox1.TabStop = false;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(124, 1);
-            label1.Name = "label1";
-            label1.Size = new Size(38, 20);
-            label1.TabIndex = 9;
-            label1.Text = "User";
             // 
             // ExitNav
             // 
@@ -164,7 +153,6 @@
             Name = "SidebarUserControl";
             Size = new Size(300, 768);
             groupBox1.ResumeLayout(false);
-            groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ResumeLayout(false);
         }
@@ -180,6 +168,5 @@
         private Button AuthNav;
         private PictureBox pictureBox2;
         private Button HomeNav;
-        private Label label1;
     }
 }

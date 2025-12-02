@@ -184,7 +184,7 @@ namespace RentalMobil_Kel2
                 success = parentForm.SaveCarData(code, merk, type, tahunProduksi, nopol, hargaSewa, statusTersedia, carImage);
                 operation = "ditambahkan";
             }
-            else 
+            else
             {
                 MessageBox.Show("UPDATE untuk code: " + code);
 
@@ -397,5 +397,6 @@ namespace RentalMobil_Kel2
                 MessageBox.Show("Pilih satu baris data mobil untuk diedit.", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
+
     }
 }

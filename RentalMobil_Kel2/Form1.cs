@@ -837,14 +837,15 @@ namespace RentalMobil_Kel2
                     break;
                 case "Logout":
                     _loggedInUserType = string.Empty;
-                    if (IsAdmin())
-                    {
+                    //if (IsAdmin())
+                    //{
                         sidebar.SetNavigationVisibility(false);
-                    }
-                    else
-                    {
+                    //}
+                    //else
+                    //{
                         sidebarUser.SetNavigationVisibility(false);
-                    }
+                    //}
+
                     controlToLoad = (new AuthControl(this));
                     break;
                 case "Rental":

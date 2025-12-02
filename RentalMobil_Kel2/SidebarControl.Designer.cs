@@ -37,7 +37,6 @@
             AuthNav = new Button();
             HomeNav = new Button();
             pictureBox2 = new PictureBox();
-            label1 = new Label();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             SuspendLayout();
@@ -147,21 +146,11 @@
             pictureBox2.TabIndex = 3;
             pictureBox2.TabStop = false;
             // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(235, 95);
-            label1.Name = "label1";
-            label1.Size = new Size(53, 20);
-            label1.TabIndex = 8;
-            label1.Text = "Admin";
-            // 
             // SidebarControl
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.DimGray;
-            Controls.Add(label1);
             Controls.Add(pictureBox2);
             Controls.Add(HomeNav);
             Controls.Add(groupBox1);
@@ -170,7 +159,6 @@
             groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
@@ -184,6 +172,5 @@
         private Button AuthNav;
         private Button HomeNav;
         private PictureBox pictureBox2;
-        private Label label1;
     }
 }

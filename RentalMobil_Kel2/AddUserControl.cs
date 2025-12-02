@@ -100,7 +100,8 @@ namespace RentalMobil_Kel2
             }
 
             bool statusBool = (statusInt == 1);
-            if (textBox2.Enabled == true) { 
+            if (textBox2.Enabled == true)
+            {
                 bool success = parentForm.Register(id_user, nama, username, password, type, statusBool, alamat, no_hp);
 
                 if (success)
@@ -193,8 +194,17 @@ namespace RentalMobil_Kel2
             }
         }
 
+        private void button5_Click(object sender, EventArgs e)
+        {
 
-        private void btnDel_Click(object sender, EventArgs e)
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged_1(object sender, EventArgs e)
         {
 
         }

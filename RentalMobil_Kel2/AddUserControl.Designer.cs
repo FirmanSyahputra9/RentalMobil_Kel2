@@ -36,10 +36,7 @@
             label7 = new Label();
             btnSave = new Button();
             btnEdit = new Button();
-            btnDel = new Button();
             btnRefresh = new Button();
-            button5 = new Button();
-            textBox1 = new TextBox();
             textBox2 = new TextBox();
             textBox3 = new TextBox();
             textBox4 = new TextBox();
@@ -55,6 +52,7 @@
             textBox5 = new TextBox();
             addCarControl1 = new AddCarControl();
             dataGridView1 = new DataGridView();
+            textBox1 = new TextBox();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
@@ -116,7 +114,7 @@
             // 
             // btnSave
             // 
-            btnSave.Location = new Point(222, 507);
+            btnSave.Location = new Point(243, 507);
             btnSave.Name = "btnSave";
             btnSave.Size = new Size(94, 29);
             btnSave.TabIndex = 7;
@@ -126,7 +124,7 @@
             // 
             // btnEdit
             // 
-            btnEdit.Location = new Point(342, 507);
+            btnEdit.Location = new Point(398, 507);
             btnEdit.Name = "btnEdit";
             btnEdit.Size = new Size(94, 29);
             btnEdit.TabIndex = 8;
@@ -134,41 +132,15 @@
             btnEdit.UseVisualStyleBackColor = true;
             btnEdit.Click += btnEdit_Click;
             // 
-            // btnDel
-            // 
-            btnDel.Location = new Point(467, 507);
-            btnDel.Name = "btnDel";
-            btnDel.Size = new Size(94, 29);
-            btnDel.TabIndex = 9;
-            btnDel.Text = "Delete";
-            btnDel.UseVisualStyleBackColor = true;
-            btnDel.Click += btnDel_Click;
-            // 
             // btnRefresh
             // 
-            btnRefresh.Location = new Point(595, 507);
+            btnRefresh.Location = new Point(533, 507);
             btnRefresh.Name = "btnRefresh";
             btnRefresh.Size = new Size(94, 29);
             btnRefresh.TabIndex = 10;
             btnRefresh.Text = "Refresh";
             btnRefresh.UseVisualStyleBackColor = true;
             btnRefresh.Click += btnRefresh_Click_1;
-            // 
-            // button5
-            // 
-            button5.Location = new Point(702, 542);
-            button5.Name = "button5";
-            button5.Size = new Size(94, 29);
-            button5.TabIndex = 11;
-            button5.Text = "Cari";
-            button5.UseVisualStyleBackColor = true;
-            // 
-            // textBox1
-            // 
-            textBox1.Location = new Point(119, 542);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(562, 27);
-            textBox1.TabIndex = 12;
             // 
             // textBox2
             // 
@@ -307,6 +279,13 @@
             dataGridView1.Size = new Size(843, 179);
             dataGridView1.TabIndex = 19;
             // 
+            // textBox1
+            // 
+            textBox1.Location = new Point(232, 575);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(562, 27);
+            textBox1.TabIndex = 12;
+            // 
             // AddUserControl
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -316,9 +295,7 @@
             Controls.Add(textBox3);
             Controls.Add(textBox2);
             Controls.Add(textBox1);
-            Controls.Add(button5);
             Controls.Add(btnRefresh);
-            Controls.Add(btnDel);
             Controls.Add(btnEdit);
             Controls.Add(btnSave);
             Controls.Add(label7);
@@ -346,10 +323,7 @@
         private Label label7;
         private Button btnSave;
         private Button btnEdit;
-        private Button btnDel;
         private Button btnRefresh;
-        private Button button5;
-        private TextBox textBox1;
         private TextBox textBox2;
         private TextBox textBox3;
         private TextBox textBox4;
@@ -365,5 +339,6 @@
         private Label label1;
         private Label label9;
         private ComboBox comboBox2;
+        private TextBox textBox1;
     }
 }
